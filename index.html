@@ -1,17 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>Entertainment Room (Working Title)</title>
+	<!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+	      <!-- Compiled and minified CSS -->
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+
+
+	  <link rel="stylesheet" href="style_bs.css">
+
+	  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+
+	  <!-- Compiled and minified JavaScript -->
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+      <title>V&amp;C Room</title>
 </head>
 <body>
+	<nav>
+	    <div class="nav-wrapper">
+	    	<a href="#!" class="brand-logo"><i class="material-icons">cloud</i>V &amp; Chat Room</a>
+		    <ul class="right hide-on-med-and-down">
+	        <li><a href="sass.html"><i class="material-icons">search</i></a></li>
+	        <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
+	        <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
+	        <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
+		    </ul>
+	      
+	    </div>
+	  </nav>
+  
+ <div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-2 sidenav">
+      <h4>What would you like to do today?</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="#section1">Watch movie</a></li>
+        <li><a href="#section2">Play a game</a></li>
+        <li><a href="#section3">Chat with a friend</a></li>
+        <li><a href="#section3">Listen to music</a></li>
+      </ul><br>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search here..">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>
+    </div>
+
+    <div class="col-sm-6 text-left"> 
+      <div class="container">
+		  <h2>Enjoy the show!</h2>
+		  <p>Create a responsive video and scale it nicely to the parent element with a 16:9 aspect ratio</p>
+		  <div class="sizer">
+			 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XGSy3_Czz8k" width=600px height=300px></iframe>
+		  </div>
+    </div>
+
+    <div class="col-sm-4 sidenav">
+      <div class="well">
+        <p>ADS</p>
+      </div>
+      <div class="well">
+        <p>ADS</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="container-fluid">
+ <div class="chat-footer">
+          <div class="container">
+            <a class="btn btn-floating btn-large pulse"><i class="material-icons">menu</i></a>
+			<a class="btn btn-floating btn-large pulse"><i class="material-icons">cloud</i></a>
+			<a class="btn btn-floating btn-large cyan pulse"><i class="material-icons">edit</i></a>
+          </div>
+</footer>
 
 
-	<div>
-		<p>Testing 123</p>
-	</div>
-	
+<!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 </html>
