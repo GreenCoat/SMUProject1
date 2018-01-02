@@ -12,8 +12,31 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 
+//Default user variable TODO: Pulls information from a cookie to remember user login
+var user = 'Guest';
+
 //Wait for document to load
 $(document).ready(function(){
+	//Sets the default user name
+	setUser(user);
+
+	//Change username based on input field
+	$("#user-login").on("click", function(){
+		//Keep button from refreshing the page
+		event.preventDefault();
+
+		//Get new name from input field
+		var newName = $("#user-login").val().trim();
+
+		//Validation, currently checking if name is blank
+		if(newName != ""){
+			//sets new user name
+			setUser(newName);
+		}
+	
+		//Clear out login field
+		$("#user-login").val("");
+	});
 
 	//On click button for saving chat messages to DB
 	$("#send").on("click", function(){
@@ -26,6 +49,7 @@ $(document).ready(function(){
 		//Validation, currently checking if message is empty
 		if(message != ""){
 			database.ref("/messages").push({
+				user: user,
 				message: message
 			});
 		}
@@ -41,6 +65,15 @@ $(document).ready(function(){
 		var sv = snapshot.val();
 
 		//Puts chat message in chat window
-		$("#chat-window").append("<div>"+sv.message+"</div>");
+		$("#chat-window").append("<div>"+sv.user+": "+sv.message+"</div>");
 	});
+
+	//Function for changing user
+	function setUser(name){
+		//Update global variable
+		user = name;
+
+		//Set display element
+		$("#current-user").text(user);
+	}
 });
