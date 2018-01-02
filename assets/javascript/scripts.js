@@ -49,6 +49,7 @@ $(document).ready(function(){
 		//Validation, currently checking if message is empty
 		if(message != ""){
 			database.ref("/messages").push({
+				user: user,
 				message: message
 			});
 		}
@@ -64,7 +65,7 @@ $(document).ready(function(){
 		var sv = snapshot.val();
 
 		//Puts chat message in chat window
-		$("#chat-window").append("<div>"+sv.message+"</div>");
+		$("#chat-window").append("<div>"+sv.user+": "+sv.message+"</div>");
 	});
 
 	//Function for changing user
