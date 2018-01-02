@@ -4,23 +4,29 @@
 	<!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
       <!--Import materialize.css-->
+      <!-- Seems to be broken
       <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+      -->
 
 	      <!-- Compiled and minified CSS -->
 	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
 
-
+    <!-- No such file exists
 	  <link rel="stylesheet" href="style_bs.css">
+    -->
 
 	  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
+    <!-- Link seem broken and not retrieving file
 	   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    -->
 
 	  <!-- Compiled and minified JavaScript -->
-	  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-
 	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
+    <script src="assets/javascript/scripts.js"></script>
 
       <!--Let browser know website is optimized for mobile-->
       <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -36,7 +42,6 @@
 	        <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
 	        <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
 		    </ul>
-	      
 	    </div>
 	  </nav>
   
@@ -65,8 +70,15 @@
 		  <h2>Enjoy the show!</h2>
 		  <p>Create a responsive video and scale it nicely to the parent element with a 16:9 aspect ratio</p>
 		  <div class="sizer">
+      <!-- Google blocking some ad on this or something and causing problems, commenting out for now
 			 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XGSy3_Czz8k" width=600px height=300px></iframe>
+      -->
 		  </div>
+
+      <!-- TOOD: Putting this chat window here temporarily, it will need to be moved and styled appropriately. -->
+      <div id="chat-window"></div>
+      <input id="chat-message" type="text">
+      <button id="send" type="submit">Submit</button>
     </div>
 
     <div class="col-sm-4 sidenav">
@@ -89,10 +101,5 @@
           </div>
 </footer>
 
-
-<!--Import jQuery before materialize.js-->
-  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <script type="text/javascript" src="js/materialize.min.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
 </body>
 </html>
