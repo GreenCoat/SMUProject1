@@ -36,7 +36,14 @@
 	<nav>
 	    <div class="nav-wrapper">
 	    	<a href="#!" class="brand-logo"><i class="material-icons">cloud</i>V &amp; Chat Room</a>
-		    <ul class="right hide-on-med-and-down">
+		    
+        <!--Putting User information here.  TODO: Will need to be styled and moved -->
+        <div>Welcome, <span id="current-user"></span></div>
+        <input id="user-login" type="text">
+        <button id="login" type="submit">Login</button>
+
+
+        <ul class="right hide-on-med-and-down">
 	        <li><a href="sass.html"><i class="material-icons">search</i></a></li>
 	        <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
 	        <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
@@ -75,7 +82,7 @@
       -->
 		  </div>
 
-      <!-- TOOD: Putting this chat window here temporarily, it will need to be moved and styled appropriately. -->
+      <!-- TODO: Putting this chat window here temporarily, it will need to be moved and styled appropriately. -->
       <div id="chat-window"></div>
       <input id="chat-message" type="text">
       <button id="send" type="submit">Submit</button>
