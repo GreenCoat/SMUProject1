@@ -1,115 +1,220 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<!--Import Google Icon Font-->
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-      <!--Import materialize.css-->
-      <!-- Seems to be broken
-      <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-      -->
 
-	      <!-- Compiled and minified CSS -->
-	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-
-
-    <!-- No such file exists
-	  <link rel="stylesheet" href="style_bs.css">
-    -->
-
-	  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <!-- Link seem broken and not retrieving file
-	   <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-    -->
-
-	  <!-- Compiled and minified JavaScript -->
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
-    <script src="assets/javascript/scripts.js"></script>
-
-      <!--Let browser know website is optimized for mobile-->
-      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-      <title>V&amp;C Room</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.8.0/firebase.js"></script>
 </head>
 <body>
-	<nav>
-	    <div class="nav-wrapper">
-	    	<a href="#!" class="brand-logo"><i class="material-icons">cloud</i>V &amp; Chat Room</a>
-		    
-        <!--Putting User information here.  TODO: Will need to be styled and moved -->
-        <div>Welcome, <span id="current-user"></span></div>
-        <input id="user-login" type="text">
-        <button id="login" type="submit">Login</button>
 
+<nav class="navbar navbar-inverse">  <!--Navbar begins here -->
+    <div class="container-fluid">
+        <div class="navbar-header">
+          <h1>View and Chat Room</h1>  <!-- This heading will change -->
+        </div>
+      <!-- Modal link on right side - Trigger the modal with a button -->
+        <ul class="nav navbar-nav navbar-right">
+        <li><button type="button" class="btn btn-primary btn-md" id="myBtn">Login</button>
+        </ul>
+ 
 
-        <ul class="right hide-on-med-and-down">
-	        <li><a href="sass.html"><i class="material-icons">search</i></a></li>
-	        <li><a href="badges.html"><i class="material-icons">view_module</i></a></li>
-	        <li><a href="collapsible.html"><i class="material-icons">refresh</i></a></li>
-	        <li><a href="mobile.html"><i class="material-icons">more_vert</i></a></li>
-		    </ul>
-	    </div>
-	  </nav>
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+    
+                <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">    <!-- Modal box header here-->
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4><span class="glyphicon glyphicon-lock"></span> Login</h4>
+                </div>
+                <div class="modal-body">    <!-- Modal box body here-->
+                  <form role="form">
+                  <div class="form-group">
+                  <label for="usrname"><span class="glyphicon glyphicon-user"></span> Username</label>
+                  <input type="text" class="form-control" id="usrname" placeholder="Enter email">
+                </div>
+                <div class="form-group">
+                  <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Password</label>
+                  <input type="text" class="form-control" id="psw" placeholder="Enter password">
+                </div>
+                <div class="checkbox">
+                  <label><input type="checkbox" value="" checked>Remember me</label>
+                </div>
+                  <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> Login</button>
+                  </form>
+                </div>
+              <div class="modal-footer">
+                <button type="submit" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+                <p>Not a member? <a href="#">Sign Up</a></p>
+                <p>Forgot <a href="#">Password?</a></p>
+              </div>
+            </div>
+      
+          </div>
+        </div> 
+      </div>
+</nav>  
+
   
- <div class="container-fluid">
-  <div class="row content">
-    <div class="col-sm-2 sidenav">
-      <h4>What would you like to do today?</h4>
-      <ul class="nav nav-pills nav-stacked">
-        <li class="active"><a href="#section1">Watch movie</a></li>
-        <li><a href="#section2">Play a game</a></li>
-        <li><a href="#section3">Chat with a friend</a></li>
-        <li><a href="#section3">Listen to music</a></li>
-      </ul><br>
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search here..">
-        <span class="input-group-btn">
-          <button class="btn btn-default" type="button">
-            <span class="glyphicon glyphicon-search"></span>
-          </button>
-        </span>
-      </div>
+ <div class="container-fluid">  <!-- Main stage area content here-->
+      <div class="row content">
+           <div class="col-sm-3 sidenav">   <!-- Sidenav with users online list box here-->
+            <div class="panel panel-success">
+                <div class="panel-heading">What would you like to do?</div>
+                <ul class="list-inline">
+                  <li><a class="test" href="#" data-toggle="tooltip" data-placement="youTube" title="Want to watch some videos?"><i class="fa fa-youtube" style="font-size:36px"></i></a></li>
+                  <li><a class="test" href="#" data-toggle="tooltip" data-placement="game" title="Play a Game?"><i class="fa fa-gamepad" style="font-size:36px"></i></a></li>
+                  <li><a class="test" href="#" data-toggle="tooltip" data-placement="chat" title="Chat with a friend?"><i class="fa fa-wechat" style="font-size:36px"></i></a></li>
+                  <li><a class="test" href="#" data-toggle="tooltip" data-placement="music" title="Listen to music?"><i class="fa fa-music" style="font-size:36px"></i></a></li>
+                </ul>
+            </div><br>
+          
+            <div class="panel panel-success">
+              <div class="panel-heading">Participants online</div>
+              <div class="panel-body">User list</div>
+            </div><br>
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search here..">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+              </span>
+            </div>
+          </div>
+         
 
-      <!-- Putting User List here for now, can be styled and moved later -->
-      <div id="user-list"></div>
-    </div>
-
-    <div class="col-sm-6 text-left"> 
+    <div class="col-md-8 text-center"> <!-- changed class from "col-sm-6-->
       <div class="container">
-		  <h2>Enjoy the show!</h2>
-		  <p>Create a responsive video and scale it nicely to the parent element with a 16:9 aspect ratio</p>
-		  <div class="sizer">
-      <!-- Google blocking some ad on this or something and causing problems, commenting out for now
-			 <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XGSy3_Czz8k" width=600px height=300px></iframe>
-      -->
-		  </div>
-
-      <!-- TODO: Putting this chat window here temporarily, it will need to be moved and styled appropriately. -->
-      <div id="chat-window"></div>
-      <input id="chat-message" type="text">
-      <button id="send" type="submit">Submit</button>
-    </div>
-
-    <div class="col-sm-4 sidenav">
-      <div class="well">
-        <p>ADS</p>
-      </div>
-      <div class="well">
-        <p>ADS</p>
+        <br>
+      <div class="sizer">
+       <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XGSy3_Czz8k"></iframe>
       </div>
     </div>
   </div>
+ <div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-comment"></span> Chat
+                    <div class="btn-group pull-right">
+                        <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        </button>
+                        <ul class="dropdown-menu slidedown">
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-refresh">
+                            </span>Refresh</a></li>
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-ok-sign">
+                            </span>Available</a></li>
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-remove">
+                            </span>Busy</a></li>
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-time"></span>
+                                Away</a></li>
+                            <li class="divider"></li>
+                            <li><a href="http://www.jquery2dotnet.com"><span class="glyphicon glyphicon-off"></span>
+                                Sign Out</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <ul class="chat">
+                        <li class="left clearfix"><span class="chat-img pull-left">
+                            <img src="http://placehold.it/50/55C1E7/fff&text=HC" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">Halley Caldwell</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="right clearfix"><span class="chat-img pull-right">
+                            <img src="http://placehold.it/50/FA6F57/fff&text=MA" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>
+                                    <strong class="pull-right primary-font">Mubeena Ahmed</strong>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="left clearfix"><span class="chat-img pull-left">
+                            <img src="http://placehold.it/50/55C1E7/fff&text=HC" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <strong class="primary-font">Halley Caldwell</strong> <small class="pull-right text-muted">
+                                        <span class="glyphicon glyphicon-time"></span>14 mins ago</small>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                        <li class="right clearfix"><span class="chat-img pull-right">
+                            <img src="http://placehold.it/50/FA6F57/fff&text=MA" alt="User Avatar" class="img-circle" />
+                        </span>
+                            <div class="chat-body clearfix">
+                                <div class="header">
+                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>15 mins ago</small>
+                                    <strong class="pull-right primary-font">Mubeena Ahmed</strong>
+                                </div>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
+                                    dolor, quis ullamcorper ligula sodales.
+                                </p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="panel-footer">
+                    <div class="input-group">
+                        <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                        <span class="input-group-btn">
+                            <button class="btn btn-warning btn-sm" id="btn-chat">
+                                Send</button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
 </div>
 
-<footer class="container-fluid">
+<!-- <footer class="container-fluid">
  <div class="chat-footer">
           <div class="container">
             <a class="btn btn-floating btn-large pulse"><i class="material-icons">menu</i></a>
-			<a class="btn btn-floating btn-large pulse"><i class="material-icons">cloud</i></a>
-			<a class="btn btn-floating btn-large cyan pulse"><i class="material-icons">edit</i></a>
+      <a class="btn btn-floating btn-large pulse"><i class="material-icons">cloud</i></a>
+      <a class="btn btn-floating btn-large cyan pulse"><i class="material-icons">edit</i></a>
           </div>
-</footer>
+</footer> commented out to accomodate stretch goal later-->  
 
+<script>
+$(document).ready(function(){
+    $("#myBtn").click(function(){
+        $("#myModal").modal();
+    });
+});
+</script>
 </body>
 </html>
