@@ -77,6 +77,10 @@ $(document).ready(function(){
 			
 			//Removes user when they disconnet
 			connection.onDisconnect().remove();
+
+			console.log(connection);
+			console.log(connection.path.n);
+			console.log(connection.key);
 		}
 	});
 
@@ -102,8 +106,6 @@ $(document).ready(function(){
 		//Set display element
 		$("#current-user").text(user);
 
-		//Update connection
-		console.log(connection);
-
+		
 	}
 });
