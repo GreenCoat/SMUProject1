@@ -18,8 +18,8 @@ var connection;
 
 //Wait for document to load
 $(document).ready(function(){
-	//Sets the default user name
-	setUser(user);
+	//Displays the default user name
+	$("#current-user").text(user);
 
 	//Change username based on input field
 	$("#user-login").on("click", function(){
@@ -69,6 +69,7 @@ $(document).ready(function(){
 		$("#chat-window").append("<div>"+sv.user+": "+sv.message+"</div>");
 	});
 
+
 	//Pushes connection to DB
 	database.ref(".info/connected").on("value", function(snapshot){
 		if(snapshot.val()){
@@ -77,10 +78,6 @@ $(document).ready(function(){
 			
 			//Removes user when they disconnet
 			connection.onDisconnect().remove();
-
-			console.log(connection);
-			console.log(connection.path.n);
-			console.log(connection.key);
 		}
 	});
 
@@ -106,6 +103,7 @@ $(document).ready(function(){
 		//Set display element
 		$("#current-user").text(user);
 
-		
+		//Updates reference in the DB
+		database.ref("/connections/"+connection.key).update({user: user});
 	}
 });
