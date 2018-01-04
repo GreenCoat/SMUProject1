@@ -22,12 +22,12 @@ $(document).ready(function(){
 	$("#current-user").text(user);
 
 	//Change username based on input field
-	$("#user-login").on("click", function(){
+	$("#login").on("click", function(){
 		//Keep button from refreshing the page
 		event.preventDefault();
 
 		//Get new name from input field
-		var newName = $("#user-login").val().trim();
+		var newName = $("#username").val().trim();
 
 		//Validation, currently checking if name is blank
 		if(newName != ""){
@@ -36,7 +36,7 @@ $(document).ready(function(){
 		}
 	
 		//Clear out login field
-		$("#user-login").val("");
+		$("#username").val("");
 	});
 
 	//On click button for saving chat messages to DB
