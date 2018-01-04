@@ -14,6 +14,7 @@ var database = firebase.database();
 
 //Default user variable TODO: Pulls information from a cookie to remember user login
 var user = 'Guest';
+var connection;
 
 //Wait for document to load
 $(document).ready(function(){
@@ -68,6 +69,31 @@ $(document).ready(function(){
 		$("#chat-window").append("<div>"+sv.user+": "+sv.message+"</div>");
 	});
 
+	//Pushes connection to DB
+	database.ref(".info/connected").on("value", function(snapshot){
+		if(snapshot.val()){
+			//Adds user when they connect
+			connection = database.ref("/connections").push({user: user});
+			
+			//Removes user when they disconnet
+			connection.onDisconnect().remove();
+		}
+	});
+
+	//Updates connection info
+	database.ref("/connections").on("value", function(snapshot){
+		//Save data to variable
+		var sv = snapshot;
+
+		//Clear User List
+		$("#user-list").html("");
+
+		//Loop over connections and rewrite list
+		sv.forEach(function(child){
+			$("#user-list").append("<div>"+child.val().user+"</div>");
+		});
+	});
+
 	//Function for changing user
 	function setUser(name){
 		//Update global variable
@@ -75,5 +101,9 @@ $(document).ready(function(){
 
 		//Set display element
 		$("#current-user").text(user);
+
+		//Update connection
+		console.log(connection);
+
 	}
 });
