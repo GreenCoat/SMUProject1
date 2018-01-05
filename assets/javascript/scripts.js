@@ -15,6 +15,8 @@ var database = firebase.database();
 //Default user variable TODO: Pulls information from a cookie to remember user login
 var user = 'Guest';
 var connection;
+//Array of valid filetypes for images
+var fileTypes = ["jpg", "png", "gif"];
 
 //Wait for document to load
 $(document).ready(function(){
@@ -39,6 +41,29 @@ $(document).ready(function(){
 		$("#username").val("");
 	});
 
+	//On click button for adding something to the stage
+	$("#stage-submit").on("click", function(){
+		//Keep button from refreshing the page
+		event.preventDefault();
+
+		//Get input from field
+		var item = $("#stage-input").val().trim();
+
+		//Validate input to make sure its an image or similar
+		//Split string to get filetype
+		var a = item.split(".");
+	
+		//Get filetype
+		var type = a[a.length-1];
+	
+		//Verify filetype
+		for(var i = 0; i < fileTypes.length; i++){
+			if(type == fileTypes[i]){
+				displayImage(item);
+			}
+		}
+	});
+
 	//On click button for saving chat messages to DB
 	$("#send").on("click", function(){
 		//Keep submit button from refreshing the page
@@ -57,6 +82,16 @@ $(document).ready(function(){
 	
 		//Clear out message field
 		$("#chat-message").val("");
+	});
+
+	database.ref("/stage").on("value", function(snapshot){
+		//Retrieves data snapshot
+		var sv = snapshot.val();
+
+		//If stage isn't null, display it
+		if(sv != null){
+			$("#main-stage").html("<img src='"+sv.stage+"' alt='some image'>");
+		}
 	});
 
 
@@ -105,5 +140,10 @@ $(document).ready(function(){
 
 		//Updates reference in the DB
 		database.ref("/connections/"+connection.key).update({user: user});
+	}
+
+	function displayImage(item){
+		//Pass image to database
+		database.ref("/stage").set({stage: item});
 	}
 });
