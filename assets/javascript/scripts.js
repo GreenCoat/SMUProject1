@@ -24,7 +24,7 @@ $(document).ready(function(){
 	$("#current-user").text(user);
 
 	//Change username based on input field
-	$("#login").on("click", function(){
+	$("#login").on("click", function(event){
 		//Keep button from refreshing the page
 		event.preventDefault();
 
@@ -42,7 +42,7 @@ $(document).ready(function(){
 	});
 
 	//On click button for adding something to the stage
-	$("#stage-submit").on("click", function(){
+	$("#stage-submit").on("click", function(event){
 		//Keep button from refreshing the page
 		event.preventDefault();
 
@@ -65,7 +65,7 @@ $(document).ready(function(){
 	});
 
 	//On click button for saving chat messages to DB
-	$("#send").on("click", function(){
+	$("#send").on("click", function(event){
 		//Keep submit button from refreshing the page
 		event.preventDefault();
 
