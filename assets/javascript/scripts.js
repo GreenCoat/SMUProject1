@@ -41,6 +41,44 @@ $(document).ready(function(){
 		$("#username").val("");
 	});
 
+	//On click button for searching for content
+	$("#search-submit").on('click', function(event){
+		//Keep button from refreshing the page
+		event.preventDefault();
+
+
+		//Get input from search
+		var search = $("#content-search").val().trim();
+
+		//AJAX call to retrieve data
+		var xhr = $.get("http://api.giphy.com/v1/gifs/search?q="+search+"&api_key=USa3C1wTZmYVJZpCU9yItXceOqvm8h2w&limit=5");
+		xhr.done(function(data) { 
+			//Put data in a variable
+			var dataArray = data.data;
+			var image;
+			var original;
+
+			//Loop over data and return images
+			for (var i = 0; i < dataArray.length; i++) {
+				
+				image = dataArray[i].images.fixed_width_small_still.url;
+				original = dataArray[i].images.original.url
+
+				$("#search-result").append("<button class='img-source'><img src='"+image+"' alt='some image' data-value='"+original+"'></button>");
+			}
+
+			//Create listeners to handle sending content to stage
+			$(document).on("click", ".img-source", function(event){
+				var value = event.target.dataset.value;
+
+				displayImage(value);
+			});
+ 		});
+
+
+		
+	});
+
 	//On click button for adding something to the stage
 	$("#stage-submit").on("click", function(event){
 		//Keep button from refreshing the page
