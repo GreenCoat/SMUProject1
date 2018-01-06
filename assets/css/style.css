@@ -1,3 +1,7 @@
+   body{
+    background-color: green;
+   }
+
        /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
       margin-bottom: 0;
@@ -35,24 +39,36 @@
       font-size: 15px;
     }
 
-  p.navbar-text{
-    color: red;
+  #welcomeMsg{
+    color: white;
+    padding-top: 10px;
+    font-size: 30px;
+    font-family: 'Joti One', cursive;
+    padding-right: 20px;
   }
 
  h1{
   color: white;
+  font-family: 'Joti One', cursive;
+  font-size: 50px;
  }
-     .modal-header, h4, .close {
+
+  .modal-header, h4, .close {
       background-color: #5cb85c;
       color:white !important;
       text-align: center;
       font-size: 30px;
   }
+
   .modal-footer {
       background-color: #f9f9f9;
   }
+
 #myBtn{
-  margin-top: 20px;
+    margin-top: 20px;
+    font-size: 20px;
+    font-family: 'Joti One', cursive;
+
 }
 
 .modal-header{
@@ -100,10 +116,16 @@
 
  }
 
- .searchYT span{
+ .search span{
   background-color: #FFF;
   }
 
-.searchYT input{
+.search input{
   border-right-style:none;
   }
+
+.stage-btn{
+  padding-left: 20px;
+  font-family: 'Joti One', cursive;
+  font-size: 30px;
+}
