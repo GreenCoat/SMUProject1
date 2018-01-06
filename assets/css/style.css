@@ -89,6 +89,8 @@
 
  .list-inline li{
   padding: 10px;
+  margin-left: 5px;
+  margin-top: 10px;
  }
 
  .embed-responsive-item{
