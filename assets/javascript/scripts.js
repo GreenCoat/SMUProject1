@@ -138,8 +138,18 @@ $(document).ready(function(){
 		//Retrieves data snapshot
 		var sv = snapshot.val();
 
-		//Puts chat message in chat window
-		$("#chat-window").append("<div>"+sv.user+": "+sv.message+"</div>");
+		var p = '<div class="container"><span>'
+				+sv.user+'</span><p>'
+				+sv.message+'</p><span class="time-right"></span></div>'
+
+		document.createElement("p")
+		p.innerHTML = sv.message
+		$("#chat-window").append(p)
+
+		// Puts chat message in chat window
+		// $("#chat-window").append("<div>"+sv.user+": "+sv.message+"</div>");
+
+
 	});
 
 
