@@ -15,11 +15,14 @@ var database = firebase.database();
 //Default user variable TODO: Pulls information from a cookie to remember user login
 var user = 'Guest';
 var connection;
+
 //Array of valid filetypes for images
 var fileTypes = ["jpg", "png", "gif"];
 
 //Wait for document to load
 $(document).ready(function(){
+	checkCookie();
+
 	//Displays the default user name
 	$("#current-user").text(user);
 
@@ -138,8 +141,18 @@ $(document).ready(function(){
 		//Retrieves data snapshot
 		var sv = snapshot.val();
 
-		//Puts chat message in chat window
-		$("#chat-window").append("<div>"+sv.user+": "+sv.message+"</div>");
+		var p = '<div class="container"><span>'
+				+sv.user+'</span><p>'
+				+sv.message+'</p><span class="time-right"></span></div>'
+
+		document.createElement("p")
+		p.innerHTML = sv.message
+		$("#chat-window").append(p)
+
+		// Puts chat message in chat window
+		// $("#chat-window").append("<div>"+sv.user+": "+sv.message+"</div>");
+
+
 	});
 
 
@@ -184,4 +197,45 @@ $(document).ready(function(){
 		//Pass image to database
 		database.ref("/stage").set({stage: item});
 	}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    var user = getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+        user = prompt("Please enter your name:", "");
+        if (user != "" && user != null) {
+            setCookie("username", user, 365);
+        }
+    }
+}
+
+
+
+
+
+
+
 });
