@@ -89,6 +89,8 @@
 
  .list-inline li{
   padding: 10px;
+  margin-left: 5px;
+  margin-top: 10px;
  }
 
  .embed-responsive-item{
@@ -97,3 +99,11 @@
   margin-left: -80px;
 
  }
+
+ .searchYT span{
+  background-color: #FFF;
+  }
+
+.searchYT input{
+  border-right-style:none;
+  }

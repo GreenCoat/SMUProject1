@@ -18,6 +18,8 @@ var connection;
 
 //Array of valid filetypes for images
 var fileTypes = ["jpg", "png", "gif"];
+//Variable for tracking what type of search is being performed
+var search;
 
 //Wait for document to load
 $(document).ready(function(){
@@ -46,6 +48,14 @@ $(document).ready(function(){
 		//Clear out login field
 		$("#username").val("");
 	});
+
+	//On click handler for stage buttons
+	$(".stage-btn").on("click", function(event){
+		//Get Value from element to see which button was clicked and set variable
+		search = event.currentTarget.dataset.value;
+
+		//Display which search method will be used
+		$("#search-title").text(search);
 
 	//On click button for searching for content
 	$("#search-submit").on('click', function(event){
@@ -80,9 +90,6 @@ $(document).ready(function(){
 				displayImage(value);
 			});
  		});
-
-
-		
 	});
 
 	//On click button for adding something to the stage

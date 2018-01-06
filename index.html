@@ -23,7 +23,7 @@
       <!-- Modal link on right side - Trigger the modal with a button -->
         <ul class="nav navbar-nav navbar-right">
           <li class="nav-item">
-            <p class="navbar-text">Welcome <span id="current-user"></span></p>
+            <p class="navbar-text" id="welcomeMsg">Welcome <span id="current-user"></span></p>
         </li>
         <li><button type="button" class="btn btn-primary btn-md" id="myBtn"><span class="glyphicon glyphicon-pencil"></span> Change Name </button></li>
         </ul>
@@ -62,11 +62,37 @@
             <div class="panel panel-success">
                 <div class="panel-heading">What would you like to do?</div>
                 <ul class="list-inline">
-                  <li><a class="test" href="#" data-toggle="tooltip" data-placement="youTube" title="Want to watch some videos?"><i class="fa fa-youtube" style="font-size:36px"></i></a></li>
-                  <li><a class="test" href="#" data-toggle="tooltip" data-placement="game" title="Play a Game?"><i class="fa fa-gamepad" style="font-size:36px"></i></a></li>
-                  <li><a class="test" href="#" data-toggle="tooltip" data-placement="chat" title="Chat with a friend?"><i class="fa fa-wechat" style="font-size:36px"></i></a></li>
-                  <li><a class="test" href="#" data-toggle="tooltip" data-placement="music" title="Listen to music?"><i class="fa fa-music" style="font-size:36px"></i></a></li>
+                  <li>
+                    <!-- Youtube search button goes here -->
+                    <a href="#searchModal" class="stage-btn" data-toggle="modal" data-target="#searchModal" data-value="YouTube"><i class="fa fa-youtube" aria-hidden="true" style="font-size:36px"></i></a>
+              
+                  </li>
+
+
+                  <li>
+                    <!-- Spotify search button goes here -->
+                    <a href="#searchModal" class="stage-btn" data-toggle="modal" data-target="#searchModal" data-value="Spotify"><i class="fa fa-spotify" aria-hidden="true" style="font-size:36px"></i></a>
+         
+                  </li>
+
+                 
+                  <li>
+                    <!-- Giphy modal begins here -->
+                     <a href="#searchModal" class="stage-btn" data-toggle="modal" data-target="#searchModal" data-value="Giphy"><img src="./assets/images/giphy_ico.jpg" alt="Giphy" style="width:40px;height:40px;"></a>
+            
+                  </li>
+
+
+
+                  <li>
+                    <!--Game icon goes here -->
+                    <a class="test" href="#" data-toggle="tooltip" data-placement="game" title="Play a Game?"><i class="fa fa-gamepad" style="font-size:36px"></i></a>
+
+                  </li>
+           
+    
                 </ul>
+            
             </div><br>
           
             <div class="panel panel-success">
@@ -143,14 +169,37 @@
 </div>
 </div>
 
-<!-- <footer class="container-fluid">
- <div class="chat-footer">
-          <div class="container">
-            <a class="btn btn-floating btn-large pulse"><i class="material-icons">menu</i></a>
-      <a class="btn btn-floating btn-large pulse"><i class="material-icons">cloud</i></a>
-      <a class="btn btn-floating btn-large cyan pulse"><i class="material-icons">edit</i></a>
-          </div>
-</footer> commented out to accomodate stretch goal later-->  
+<!-- Search Modal goes here -->
+      <div id="searchModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+              <!-- Modal content--> 
+                <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Search <span id="search-title"></span></h4>
+                      </div>
+
+                  <!-- Add the modal body here -->
+                    <div class="modal-body">                          
+                          <div class="input-group search">
+                              <input type="text"  class="form-control" placeholder="Search here"/>
+                              <span class="input-group-addon">
+                                  <i class="glyphicon glyphicon-search"></i>
+                              </span>
+                          </div>
+                              <div class="well">Search Results go here</div>
+                    </div>
+                                          
+                    <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+              </div>
+      </div>
+
+
 
 <script>
 $(document).ready(function(){
