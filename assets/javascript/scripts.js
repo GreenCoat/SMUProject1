@@ -15,6 +15,8 @@ var database = firebase.database();
 //Default user variable TODO: Pulls information from a cookie to remember user login
 var user = 'Guest';
 var connection;
+//Array of valid filetypes for images
+var fileTypes = ["jpg", "png", "gif"];
 
 //Wait for document to load
 $(document).ready(function(){
@@ -22,7 +24,7 @@ $(document).ready(function(){
 	$("#current-user").text(user);
 
 	//Change username based on input field
-	$("#login").on("click", function(){
+	$("#login").on("click", function(event){
 		//Keep button from refreshing the page
 		event.preventDefault();
 
@@ -39,8 +41,69 @@ $(document).ready(function(){
 		$("#username").val("");
 	});
 
+	//On click button for searching for content
+	$("#search-submit").on('click', function(event){
+		//Keep button from refreshing the page
+		event.preventDefault();
+
+
+		//Get input from search
+		var search = $("#content-search").val().trim();
+
+		//AJAX call to retrieve data
+		var xhr = $.get("http://api.giphy.com/v1/gifs/search?q="+search+"&api_key=USa3C1wTZmYVJZpCU9yItXceOqvm8h2w&limit=5");
+		xhr.done(function(data) { 
+			//Put data in a variable
+			var dataArray = data.data;
+			var image;
+			var original;
+
+			//Loop over data and return images
+			for (var i = 0; i < dataArray.length; i++) {
+				
+				image = dataArray[i].images.fixed_width_small_still.url;
+				original = dataArray[i].images.original.url
+
+				$("#search-result").append("<button class='img-source'><img src='"+image+"' alt='some image' data-value='"+original+"'></button>");
+			}
+
+			//Create listeners to handle sending content to stage
+			$(document).on("click", ".img-source", function(event){
+				var value = event.target.dataset.value;
+
+				displayImage(value);
+			});
+ 		});
+
+
+		
+	});
+
+	//On click button for adding something to the stage
+	$("#stage-submit").on("click", function(event){
+		//Keep button from refreshing the page
+		event.preventDefault();
+
+		//Get input from field
+		var item = $("#stage-input").val().trim();
+
+		//Validate input to make sure its an image or similar
+		//Split string to get filetype
+		var a = item.split(".");
+	
+		//Get filetype
+		var type = a[a.length-1];
+	
+		//Verify filetype
+		for(var i = 0; i < fileTypes.length; i++){
+			if(type == fileTypes[i]){
+				displayImage(item);
+			}
+		}
+	});
+
 	//On click button for saving chat messages to DB
-	$("#send").on("click", function(){
+	$("#send").on("click", function(event){
 		//Keep submit button from refreshing the page
 		event.preventDefault();
 
@@ -57,6 +120,16 @@ $(document).ready(function(){
 	
 		//Clear out message field
 		$("#chat-message").val("");
+	});
+
+	database.ref("/stage").on("value", function(snapshot){
+		//Retrieves data snapshot
+		var sv = snapshot.val();
+
+		//If stage isn't null, display it
+		if(sv != null){
+			$("#main-stage").html("<img src='"+sv.stage+"' alt='some image'>");
+		}
 	});
 
 
@@ -115,5 +188,10 @@ $(document).ready(function(){
 
 		//Updates reference in the DB
 		database.ref("/connections/"+connection.key).update({user: user});
+	}
+
+	function displayImage(item){
+		//Pass image to database
+		database.ref("/stage").set({stage: item});
 	}
 });

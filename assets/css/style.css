@@ -35,6 +35,10 @@
       font-size: 15px;
     }
 
+  p.navbar-text{
+    color: red;
+  }
+
  h1{
   color: white;
  }
