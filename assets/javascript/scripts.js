@@ -21,7 +21,9 @@ var fileTypes = ["jpg", "png", "gif"];
 
 //Wait for document to load
 $(document).ready(function(){
-	checkCookie();
+	setCookie("user", user, 365);
+	var test = getCookie("user");
+	console.log(test);
 
 	//Displays the default user name
 	$("#current-user").text(user);
