@@ -99,3 +99,11 @@
   margin-left: -80px;
 
  }
+
+ .searchYT span{
+  background-color: #FFF;
+  }
+
+.searchYT input{
+  border-right-style:none;
+  }

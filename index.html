@@ -63,168 +63,36 @@
                 <div class="panel-heading">What would you like to do?</div>
                 <ul class="list-inline">
                   <li>
-                    <!-- Youtube modal begins here -->
-                    <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch"><i class="fa fa-youtube" aria-hidden="true" style="font-size:36px"></i></a>
-              <!-- Search Modal -->
-            <div id="modalSearch" class="modal fade" role="dialog">
-               <div class="modal-dialog">
-
-                   <!-- Modal content-->
-                   <div class="modal-content">
-                       <div class="modal-header">
-                           <button type="button" class="close" data-dismiss="modal">&times;</button>
-                           <h4 class="modal-title">Search Youtube</h4>
-                       </div>
-                       <div class="modal-body">
-                           <!-- Add the modal body here -->
-                           <script>
-                      (function() {
-                        var cx = '015475556659652756844:vwo2_0og9zi';
-                        var gcse = document.createElement('script');
-                        gcse.type = 'text/javascript';
-                        gcse.async = true;
-                        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                        var s = document.getElementsByTagName('script')[0];
-                        s.parentNode.insertBefore(gcse, s);
-                      })();
-                    </script>
-                    <gcse:search></gcse:search>
-                    <!-- These styles fix CSE and Bootstrap 3 conflict -->
-                    <style type="text/css">
-                        .reset-box-sizing, .reset-box-sizing *, .reset-box-sizing *:before, .reset-box-sizing *:after,  .gsc-inline-block
-                        {
-                            -webkit-box-sizing: content-box;
-                            -moz-box-sizing: content-box;
-                            box-sizing: content-box;
-                        }
-                        input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus, .gsc-search-button
-                        {
-                            box-sizing: content-box;
-                            line-height: normal;
-                        }
-                    </style>
-                       </div>
-                       <div class="modal-footer">
-                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                       </div>
-                   </div>
-
-               </div>
-            </div></a>
+                    <!-- Youtube search button goes here -->
+                    <a href="#searchModal" class="stage-btn" data-toggle="modal" data-target="#searchModal" data-value="YouTube"><i class="fa fa-youtube" aria-hidden="true" style="font-size:36px"></i></a>
+              
                   </li>
 
 
-          <li>
-                    <!-- Spotify modal begins here -->
-                    <a href="#modalSearchSpotify" data-toggle="modal" data-target="#modalSearchSpotify"><i class="fa fa-spotify" aria-hidden="true" style="font-size:36px"></i></a>
-              <!-- Search Modal -->
-            <div id="modalSearchSpotify" class="modal fade" role="dialog">
-               <div class="modal-dialog">
+                  <li>
+                    <!-- Spotify search button goes here -->
+                    <a href="#searchModal" class="stage-btn" data-toggle="modal" data-target="#searchModal" data-value="Spotify"><i class="fa fa-spotify" aria-hidden="true" style="font-size:36px"></i></a>
+         
+                  </li>
 
-                   <!-- Modal content-->
-                   <div class="modal-content">
-                       <div class="modal-header">
-                           <button type="button" class="close" data-dismiss="modal">&times;</button>
-                           <h4 class="modal-title">Search Spotify</h4>
-                       </div>
-                       <div class="modal-body">
-                           <!-- Add the modal body here -->
-                           <script>
-                      (function() {
-                        var cx = '015475556659652756844:mzi6xpwaqyk';
-                        var gcse = document.createElement('script');
-                        gcse.type = 'text/javascript';
-                        gcse.async = true;
-                        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                        var s = document.getElementsByTagName('script')[0];
-                        s.parentNode.insertBefore(gcse, s);
-                      })();
-                    </script>
-                    <gcse:search></gcse:search>
-                    <!-- These styles fix CSE and Bootstrap 3 conflict -->
-                    <style type="text/css">
-                        .reset-box-sizing, .reset-box-sizing *, .reset-box-sizing *:before, .reset-box-sizing *:after,  .gsc-inline-block
-                        {
-                            -webkit-box-sizing: content-box;
-                            -moz-box-sizing: content-box;
-                            box-sizing: content-box;
-                        }
-                        input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus, .gsc-search-button
-                        {
-                            box-sizing: content-box;
-                            line-height: normal;
-                        }
-                    </style>
-                       </div>
-                       <div class="modal-footer">
-                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                       </div>
-                   </div>
-
-               </div>
-            </div></a>
-          </li>
-
-                  <!-- Giphy modal begins here -->
-                  <li><a href="#modalSearchGiphy" data-toggle="modal" data-target="#modalSearchGiphy"><img src="./assets/images/giphy_ico.jpg" alt="Giphy" style="width:40px;height:40px;"></a>
-              <!-- Search Modal -->
-            <div id="modalSearchGiphy" class="modal fade" role="dialog">
-               <div class="modal-dialog">
-
-                   <!-- Modal content-->
-                   <div class="modal-content">
-                       <div class="modal-header">
-                           <button type="button" class="close" data-dismiss="modal">&times;</button>
-                           <h4 class="modal-title">Search Giphy</h4>
-                       </div>
-                       <div class="modal-body">
-                           <!-- Add the modal body here -->
-                           <script>
-                      (function() {
-                        var cx = '015475556659652756844:jwp42kpsllc';
-                        var gcse = document.createElement('script');
-                        gcse.type = 'text/javascript';
-                        gcse.async = true;
-                        gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
-                        var s = document.getElementsByTagName('script')[0];
-                        s.parentNode.insertBefore(gcse, s);
-                      })();
-                    </script>
-                    <gcse:search></gcse:search>
-                    <!-- These styles fix CSE and Bootstrap 3 conflict -->
-                    <style type="text/css">
-                        .reset-box-sizing, .reset-box-sizing *, .reset-box-sizing *:before, .reset-box-sizing *:after,  .gsc-inline-block
-                        {
-                            -webkit-box-sizing: content-box;
-                            -moz-box-sizing: content-box;
-                            box-sizing: content-box;
-                        }
-                        input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus, .gsc-search-button
-                        {
-                            box-sizing: content-box;
-                            line-height: normal;
-                        }
-                    </style>
-                       </div>
-                       <div class="modal-footer">
-                           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                       </div>
-                   </div>
-
-               </div>
-            </div></a>
-          </li>
+                 
+                  <li>
+                    <!-- Giphy modal begins here -->
+                     <a href="#searchModal" class="stage-btn" data-toggle="modal" data-target="#searchModal" data-value="Giphy"><img src="./assets/images/giphy_ico.jpg" alt="Giphy" style="width:40px;height:40px;"></a>
+            
+                  </li>
 
 
 
                   <li>
+                    <!--Game icon goes here -->
                     <a class="test" href="#" data-toggle="tooltip" data-placement="game" title="Play a Game?"><i class="fa fa-gamepad" style="font-size:36px"></i></a>
+
                   </li>
-
-                 
-
-                  
+           
+    
                 </ul>
+            
             </div><br>
           
             <div class="panel panel-success">
@@ -353,14 +221,37 @@
 </div>
 </div>
 
-<!-- <footer class="container-fluid">
- <div class="chat-footer">
-          <div class="container">
-            <a class="btn btn-floating btn-large pulse"><i class="material-icons">menu</i></a>
-      <a class="btn btn-floating btn-large pulse"><i class="material-icons">cloud</i></a>
-      <a class="btn btn-floating btn-large cyan pulse"><i class="material-icons">edit</i></a>
-          </div>
-</footer> commented out to accomodate stretch goal later-->  
+<!-- Search Modal goes here -->
+      <div id="searchModal" class="modal fade" role="dialog">
+              <div class="modal-dialog">
+
+              <!-- Modal content--> 
+                <div class="modal-content">
+                      <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h4 class="modal-title">Search <span id="search-title"></span></h4>
+                      </div>
+
+                  <!-- Add the modal body here -->
+                    <div class="modal-body">                          
+                          <div class="input-group searchYT">
+                              <input type="text"  class="form-control" placeholder="Search here"/>
+                              <span class="input-group-addon">
+                                  <i class="glyphicon glyphicon-search"></i>
+                              </span>
+                          </div>
+                              <div class="well">Search Results go here</div>
+                    </div>
+                                          
+                    <div class="modal-footer">
+                          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+              </div>
+      </div>
+
+
 
 <script>
 $(document).ready(function(){
