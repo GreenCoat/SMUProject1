@@ -24,6 +24,7 @@ $(document).ready(function(){
 	setCookie("user", user, 365);
 	var test = getCookie("user");
 	console.log(test);
+	console.log("Cookies are dumb");
 
 	//Displays the default user name
 	$("#current-user").text(user);
