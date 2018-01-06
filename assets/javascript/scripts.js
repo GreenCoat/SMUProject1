@@ -48,7 +48,7 @@ $(document).ready(function(){
 
 
 		//Get input from search
-		var search = $("#content-search").val().trim();
+		var search = $("#search").val().trim();
 
 		//AJAX call to retrieve data
 		var xhr = $.get("http://api.giphy.com/v1/gifs/search?q="+search+"&api_key=USa3C1wTZmYVJZpCU9yItXceOqvm8h2w&limit=5");
