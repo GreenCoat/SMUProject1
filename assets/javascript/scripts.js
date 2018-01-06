@@ -14,6 +14,7 @@ var database = firebase.database();
 
 //Default user variable TODO: Pulls information from a cookie to remember user login
 var user = 'Guest';
+var connection;
 
 //Array of valid filetypes for images
 var fileTypes = ["jpg", "png", "gif"];
