@@ -67,6 +67,7 @@ $(document).ready(function(){
 				$("#search-result").append("<button class='img-source'><img src='"+image+"' alt='some image' data-value='"+original+"'></button>");
 			}
 
+			//Create listeners to handle sending content to stage
 			$(document).on("click", ".img-source", function(event){
 				var value = event.target.dataset.value;
 
