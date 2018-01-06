@@ -120,15 +120,15 @@ $(document).ready(function(){
 	$("#send").on("click", function(event){
 		//Keep submit button from refreshing the page
 		event.preventDefault();
-
+        var date = moment().format('MMM Do, h:mm a');
 		//Get message from message field
 		var message = $("#chat-message").val().trim();
-
 		//Validation, currently checking if message is empty
 		if(message != ""){
 			database.ref("/messages").push({
 				user: user,
-				message: message
+				message: message,
+				date: date
 			});
 		}
 	
@@ -145,24 +145,30 @@ $(document).ready(function(){
 			$("#main-stage").html("<img src='"+sv.stage+"' alt='some image'>");
 		}
 	});
+      
 
+  
 
 	//Update event for DB that also retrieves messages
 	database.ref("/messages").on("child_added", function(snapshot){
+		
+	
+		
 		//Retrieves data snapshot
 		var sv = snapshot.val();
-
 		var p = '<div class="container"><span>'
 				+sv.user+'</span><p>'
-				+sv.message+'</p><span class="time-right"></span></div>'
+				+sv.message+'</p><span class="time-right"> </span></div><small class="pull-right text-muted">'
+				+sv.date+'<span class="glyphicon glyphicon-time"></span></small>'
 
 		document.createElement("p")
 		p.innerHTML = sv.message
 		$("#chat-window").append(p)
 
+
+		
 		// Puts chat message in chat window
 		// $("#chat-window").append("<div>"+sv.user+": "+sv.message+"</div>");
-
 
 	});
 
