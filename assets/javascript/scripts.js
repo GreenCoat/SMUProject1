@@ -15,6 +15,7 @@ var database = firebase.database();
 //Default user variable TODO: Pulls information from a cookie to remember user login
 var user = 'Guest';
 var connection;
+
 //Array of valid filetypes for images
 var fileTypes = ["jpg", "png", "gif"];
 //Variable for tracking what type of search is being performed
@@ -22,11 +23,16 @@ var search;
 
 //Wait for document to load
 $(document).ready(function(){
+	setCookie("user", user, 365);
+	var test = getCookie("user");
+	console.log(test);
+	console.log("Cookies are dumb");
+
 	//Displays the default user name
 	$("#current-user").text(user);
 
 	//Change username based on input field
-	$("#login").on("click", function(){
+	$("#login").on("click", function(event){
 		//Keep button from refreshing the page
 		event.preventDefault();
 
@@ -51,10 +57,43 @@ $(document).ready(function(){
 		//Display which search method will be used
 		$("#search-title").text(search);
 
+	//On click button for searching for content
+	$("#search-submit").on('click', function(event){
+		//Keep button from refreshing the page
+		event.preventDefault();
+
+
+		//Get input from search
+		var search = $("#search").val().trim();
+
+		//AJAX call to retrieve data
+		var xhr = $.get("http://api.giphy.com/v1/gifs/search?q="+search+"&api_key=USa3C1wTZmYVJZpCU9yItXceOqvm8h2w&limit=5");
+		xhr.done(function(data) { 
+			//Put data in a variable
+			var dataArray = data.data;
+			var image;
+			var original;
+
+			//Loop over data and return images
+			for (var i = 0; i < dataArray.length; i++) {
+				
+				image = dataArray[i].images.fixed_width_small_still.url;
+				original = dataArray[i].images.original.url
+
+				$("#search-result").append("<button class='img-source'><img src='"+image+"' alt='some image' data-value='"+original+"'></button>");
+			}
+
+			//Create listeners to handle sending content to stage
+			$(document).on("click", ".img-source", function(event){
+				var value = event.target.dataset.value;
+
+				displayImage(value);
+			});
+ 		});
 	});
 
 	//On click button for adding something to the stage
-	$("#stage-submit").on("click", function(){
+	$("#stage-submit").on("click", function(event){
 		//Keep button from refreshing the page
 		event.preventDefault();
 
@@ -77,7 +116,7 @@ $(document).ready(function(){
 	});
 
 	//On click button for saving chat messages to DB
-	$("#send").on("click", function(){
+	$("#send").on("click", function(event){
 		//Keep submit button from refreshing the page
 		event.preventDefault();
 
@@ -112,8 +151,18 @@ $(document).ready(function(){
 		//Retrieves data snapshot
 		var sv = snapshot.val();
 
-		//Puts chat message in chat window
-		$("#chat-window").append("<div>"+sv.user+": "+sv.message+"</div>");
+		var p = '<div class="container"><span>'
+				+sv.user+'</span><p>'
+				+sv.message+'</p><span class="time-right"></span></div>'
+
+		document.createElement("p")
+		p.innerHTML = sv.message
+		$("#chat-window").append(p)
+
+		// Puts chat message in chat window
+		// $("#chat-window").append("<div>"+sv.user+": "+sv.message+"</div>");
+
+
 	});
 
 
@@ -158,4 +207,45 @@ $(document).ready(function(){
 		//Pass image to database
 		database.ref("/stage").set({stage: item});
 	}
+
+function setCookie(cname, cvalue, exdays) {
+    var d = new Date();
+    d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+    var expires = "expires="+d.toUTCString();
+    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+}
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i < ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
+function checkCookie() {
+    var user = getCookie("username");
+    if (user != "") {
+        alert("Welcome again " + user);
+    } else {
+        user = prompt("Please enter your name:", "");
+        if (user != "" && user != null) {
+            setCookie("username", user, 365);
+        }
+    }
+}
+
+
+
+
+
+
+
 });
