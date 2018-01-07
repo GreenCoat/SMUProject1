@@ -13,7 +13,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 //Default user variable TODO: Pulls information from a cookie to remember user login
-var user = 'Guest';
+var user = getCookie("User") ? getCookie("User") : 'Guest';
 var connection;
 
 //Array of valid filetypes for images
@@ -23,11 +23,6 @@ var search;
 
 //Wait for document to load
 $(document).ready(function(){
-	setCookie("user", user, 365);
-	var test = getCookie("user");
-	console.log(test);
-	console.log("Cookies are dumb");
-
 	//Displays the default user name
 	$("#current-user").text(user);
 
@@ -139,14 +134,8 @@ $(document).ready(function(){
 		}
 	});
       
-
-  
-
 	//Update event for DB that also retrieves messages
-	database.ref("/messages").on("child_added", function(snapshot){
-		
-	
-		
+	database.ref("/messages").on("child_added", function(snapshot){	
 		//Retrieves data snapshot
 		var sv = snapshot.val();
 		var p = '<div class="container"><span>'
@@ -199,6 +188,9 @@ $(document).ready(function(){
 		//Set display element
 		$("#current-user").text(user);
 
+		//Save a cookie for persistent login
+		setCookie('User', user, 365);
+
 		//Updates reference in the DB
 		database.ref("/connections/"+connection.key).update({user: user});
 	}
@@ -239,15 +231,16 @@ $(document).ready(function(){
 			});
  		});
 	}
+});
 
-	function setCookie(cname, cvalue, exdays) {
+function setCookie(cname, cvalue, exdays) {
     	var d = new Date();
     	d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
     	var expires = "expires="+d.toUTCString();
     	document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-	}
+}
 
-	function getCookie(cname) {
+function getCookie(cname) {
     	var name = cname + "=";
     	var ca = document.cookie.split(';');
     	for(var i = 0; i < ca.length; i++) {
@@ -260,5 +253,4 @@ $(document).ready(function(){
         	}
     	}
     	return "";
-	}
-});
+}
