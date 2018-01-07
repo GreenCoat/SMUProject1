@@ -57,40 +57,33 @@ $(document).ready(function(){
 		//Display which search method will be used
 		$("#search-title").text(search);
 	});
-	
+
 	//On click button for searching for content
 	$("#search-submit").on('click', function(event){
 		//Keep button from refreshing the page
 		event.preventDefault();
 
-
 		//Get input from search
-		var search = $("#search").val().trim();
+		var q = $("#search-query").val().trim();
 
-		//AJAX call to retrieve data
-		var xhr = $.get("http://api.giphy.com/v1/gifs/search?q="+search+"&api_key=USa3C1wTZmYVJZpCU9yItXceOqvm8h2w&limit=5");
-		xhr.done(function(data) { 
-			//Put data in a variable
-			var dataArray = data.data;
-			var image;
-			var original;
+		//Clear input
+		$("#search-query").val("");
 
-			//Loop over data and return images
-			for (var i = 0; i < dataArray.length; i++) {
-				
-				image = dataArray[i].images.fixed_width_small_still.url;
-				original = dataArray[i].images.original.url
-
-				$("#search-result").append("<button class='img-source'><img src='"+image+"' alt='some image' data-value='"+original+"'></button>");
-			}
-
-			//Create listeners to handle sending content to stage
-			$(document).on("click", ".img-source", function(event){
-				var value = event.target.dataset.value;
-
-				displayImage(value);
-			});
- 		});
+		//Use appropriate API for search
+		switch(search){
+			case 'YouTube': 
+				console.log('YouTube');
+				break;
+			case 'Spotify':
+				console.log('Spotify');
+				break;
+			case 'Giphy':
+				console.log('Giphy');
+				giphySearch(q);
+				break;
+			default:
+				console.log('Search is invalid');
+		}
 	});
 
 	//On click button for adding something to the stage
@@ -207,6 +200,38 @@ $(document).ready(function(){
 	function displayImage(item){
 		//Pass image to database
 		database.ref("/stage").set({stage: item});
+	}
+
+	function giphySearch(q){
+		//AJAX call to retrieve data
+		var xhr = $.get("http://api.giphy.com/v1/gifs/search?q="+q+"&api_key=USa3C1wTZmYVJZpCU9yItXceOqvm8h2w&limit=10");
+		xhr.done(function(data) { 
+			//Put data in a variable
+			var dataArray = data.data;
+			var image;
+			var original;
+
+			//Clear previous results
+			$("#search-result").html("");
+
+			//Loop over data and return images
+			for (var i = 0; i < dataArray.length; i++) {
+				
+				image = dataArray[i].images.fixed_width_small_still.url;
+				original = dataArray[i].images.original.url
+
+				$("#search-result").append("<button class='img-source'><img src='"+image+"' alt='some image' data-value='"+original+"'></button>");
+			}
+
+			//Create listeners to handle sending content to stage
+			$(document).on("click", ".img-source", function(event){
+				var value = event.target.dataset.value;
+
+				//Close the modal after a selection is made
+				displayImage(value);
+				$("#searchModal").modal('hide');
+			});
+ 		});
 	}
 
 	function setCookie(cname, cvalue, exdays) {
