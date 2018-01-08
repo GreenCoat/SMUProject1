@@ -1,6 +1,7 @@
  html
 {
     overflow: auto;
+   /* min-width: 1080px;*/
 }
 
 body
@@ -42,7 +43,7 @@ html, body
     left:0;
     top:92px;
     bottom: 0;
-    width:13%;
+    width:15%;
     }
     
     /* Set black background color, white text and some padding */
@@ -159,23 +160,25 @@ html, body
 #main-stage{
   background: black;
  /* border: 1px solid black;*/
-  width: 115%;
-  margin-left: 16%;
+  width: 45%;
+  margin-left: 20%;
   margin-bottom: 0px;
   height: 90%;
   padding-bottom: 0px;
-  margin-top: -1%;
+  margin-top: 0%;
+ 
 
 }
 
 #chatBox{
-  width: 114%;
-  margin-left: 2%;
+  width: 33%;
+  margin-left: 3%;
   padding-top: 0px;
   margin-top: 0%;
   height: 1%;
   margin-right: -2%;
-  
+  float: right;
+
 }
 
 #chat-window{
