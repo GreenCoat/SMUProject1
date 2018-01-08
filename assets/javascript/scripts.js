@@ -67,13 +67,12 @@ $(document).ready(function(){
 		//Use appropriate API for search
 		switch(search){
 			case 'YouTube': 
-				console.log('YouTube');
+				youtubeSearch(q);
 				break;
 			case 'Spotify':
 				console.log('Spotify');
 				break;
 			case 'Giphy':
-				console.log('Giphy');
 				giphySearch(q);
 				break;
 			default:
@@ -129,8 +128,12 @@ $(document).ready(function(){
 		var sv = snapshot.val();
 
 		//If stage isn't null, display it
-		if(sv != null){
-			$("#main-stage").html("<img src='"+sv.stage+"' alt='some image'>");
+		if(sv.stage != null && sv.type != null){
+			if(sv.type == 'Giphy'){
+				$("#main-stage").html("<img src='"+sv.stage+"'>");
+			} else if (sv.type == 'YouTube'){
+				$("#main-stage").html("<iframe src='www.youtube.com/embed/"+sv.stage+"?autoplay=1'></iframe>")
+			}
 		}
 	});
       
@@ -180,6 +183,15 @@ $(document).ready(function(){
 		});
 	});
 
+	//Create listeners to handle sending content to stage
+	$(document).on("click", ".img-source", function(event){
+		var value = event.target.dataset.value;
+
+		//Close the modal after a selection is made
+		displayImage(value, search);
+		$("#searchModal").modal('hide');
+	});
+
 	//Function for changing user
 	function setUser(name){
 		//Update global variable
@@ -195,9 +207,9 @@ $(document).ready(function(){
 		database.ref("/connections/"+connection.key).update({user: user});
 	}
 
-	function displayImage(item){
+	function displayImage(item, type){
 		//Pass image to database
-		database.ref("/stage").set({stage: item});
+		database.ref("/stage").set({stage: item, type: type});
 	}
 
 	function giphySearch(q){
@@ -218,19 +230,28 @@ $(document).ready(function(){
 				image = dataArray[i].images.fixed_width_small_still.url;
 				original = dataArray[i].images.original.url
 
-				$("#search-result").append("<button class='img-source'><img src='"+image+"' alt='some image' data-value='"+original+"'></button>");
+				$("#search-result").append("<button class='img-source'><img src='"+image+"' data-value='"+original+"'></button>");
 			}
-
-			//Create listeners to handle sending content to stage
-			$(document).on("click", ".img-source", function(event){
-				var value = event.target.dataset.value;
-
-				//Close the modal after a selection is made
-				displayImage(value);
-				$("#searchModal").modal('hide');
-			});
  		});
 	}
+
+	function youtubeSearch(q){
+		//AJAX call to retrieve data
+		$.get(
+			"https://www.googleapis.com/youtube/v3/search",{
+				type: 'video',
+				part: 'snippet',
+				key: "AIzaSyBSr-0kuZwXxHJgFYWeQIf3pn2alAAD3cQ",
+				q: q,
+				maxResults: 5
+			}, function(data){
+				$("#search-result").html("");
+				$.each(data.items, function(i, item){
+					var v = item.snippet;
+					$("#search-result").append("<div>"+v.title+"</div><div><img class='img-source' src='"+v.thumbnails.default.url+"' data-value='"+item.id.videoId+"'></div>");
+				})
+			});
+  	}
 });
 
 function setCookie(cname, cvalue, exdays) {
