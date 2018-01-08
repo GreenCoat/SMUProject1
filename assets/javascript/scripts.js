@@ -132,7 +132,7 @@ $(document).ready(function(){
 			if(sv.type == 'Giphy'){
 				$("#main-stage").html("<img src='"+sv.stage+"'>");
 			} else if (sv.type == 'YouTube'){
-				$("#main-stage").html("<iframe src='www.youtube.com/embed/"+sv.stage+"?autoplay=1'></iframe>")
+				$("#main-stage").html("<iframe src='https://www.youtube.com/embed/"+sv.stage+"?autoplay=1'></iframe>")
 			}
 		}
 	});
