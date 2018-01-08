@@ -25,17 +25,17 @@
 
 
 
-<nav class="navbar navbar-inverse">  <!--Navbar begins here -->
+<nav class="navbar navbar-inverse" id="title-bar">  <!--Navbar begins here -->
     <div class="container-fluid">
         <div class="navbar-header">
-          <h1>View and Chat Room</h1>  <!-- This heading will change -->
+          <h1><span class="glyphicon glyphicon-cloud"></span> W-H-O-o-s-h</h1>  <!-- This heading will change -->
         </div>
       <!-- Modal link on right side - Trigger the modal with a button -->
         <ul class="nav navbar-nav navbar-right">
           <li class="nav-item">
             <p class="navbar-text" id="welcomeMsg">Welcome <span id="current-user"></span></p>
         </li>
-        <li><button type="button" class="btn btn-success btn-md" id="myBtn"><span class="glyphicon glyphicon-pencil"></span> Change Name </button></li>
+        <li><button type="button" class="btn btn-success btn-md" id="myBtn"><span class="glyphicon glyphicon-pencil"></span></button></li>
         </ul>
  
 
@@ -68,9 +68,9 @@
   
  <div class="container-fluid">  <!-- Main stage area content here-->
       <div class="row content">
-           <div class="col-sm-3 sidenav">   <!-- Sidenav with users online list box here-->
+           <div class="col-sm-3 sidenav" id="sidebar">   <!-- Sidenav with users online list box here-->
             <div class="panel panel-success">
-                <div class="panel-heading">What would you like to do?</div>
+                <div class="panel-heading">Upload to Stage</div>
                 <ul class="list-inline">
                   <li>
                     <!-- Youtube search button goes here -->
@@ -120,10 +120,13 @@
           </div>
          
 
-    <div class="col-md-8 text-center"> <!-- changed class from "col-sm-6-->
+    <div class="col-md-9 text-center"> <!-- changed class from "col-sm-6-->
+       
       <div class="container">
         <br>
+
       <div id="main-stage" class="sizer">
+       
        <!--
        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XGSy3_Czz8k"></iframe>
         -->
@@ -132,7 +135,8 @@
   </div>
  <div class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-9" id="chatBox">
+          <span class="pull-right"></span>
             <div class="panel panel-success">
                 <div class="panel-heading">
                     <span class="glyphicon glyphicon-comment"></span> Chat

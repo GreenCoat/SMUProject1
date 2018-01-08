@@ -1,11 +1,29 @@
-   body{
-    background-color: green;
-   }
+ html
+{
+    overflow: auto;
+}
 
+body
+{
+    margin: 0;
+    box-sizing: border-box;
+    background-color: green;
+    
+}
+
+html, body
+{
+  
+    height: 100%;
+   
+}
+
+ 
        /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
+
     }
     
     /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
@@ -17,6 +35,14 @@
       background-color: #f1f1f1;
       height: 100%;
       color: green;
+    }
+
+    #sidebar{
+    position:absolute;
+    left:0;
+    top:92px;
+    bottom: 0;
+    width:13%;
     }
     
     /* Set black background color, white text and some padding */
@@ -129,3 +155,32 @@
   font-family: 'Joti One', cursive;
   font-size: 30px;
 }
+
+#main-stage{
+  background: black;
+ /* border: 1px solid black;*/
+  width: 115%;
+  margin-left: 16%;
+  margin-bottom: 0px;
+  height: 90%;
+  padding-bottom: 0px;
+  margin-top: -1%;
+
+}
+
+#chatBox{
+  width: 114%;
+  margin-left: 2%;
+  padding-top: 0px;
+  margin-top: 0%;
+  height: 1%;
+  margin-right: -2%;
+  
+}
+
+#chat-window{
+  min-height: 1%;
+  max-height: 1%;
+  overflow-y: scroll;
+}
+
