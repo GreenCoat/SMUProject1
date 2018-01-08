@@ -67,7 +67,7 @@
   
  <div class="container-fluid">  <!-- Main stage area content here-->
       <div class="row content">
-           <div class="col-sm-3 sidenav" id="sidebar">   <!-- Sidenav with users online list box here-->
+           <div class="col-sm-4 sidenav" id="sidebar">   <!-- Sidenav with users online list box here-->
             <div class="panel panel-success">
                 <div class="panel-heading">Upload to Stage</div>
                 <ul class="list-inline">
@@ -104,89 +104,48 @@
             
             </div><br>
           
-            <div class="panel panel-success">
-              <div class="panel-heading">Participants online</div>
-              <div id="user-list" class="panel-body">User list</div>
-            </div><br>
-            <div class="input-group">
-              <input type="text" id="stage-input" class="form-control" placeholder="Search here..">
-              <span class="input-group-btn">
-                <button id="stage-submit" class="btn btn-default" type="submit">
-                  <span class="glyphicon glyphicon-search"></span>
-                </button>
-              </span>
-            </div>
+                <div class="panel panel-success">
+                  <div class="panel-heading">Participants online</div>
+                  <div id="user-list" class="panel-body">User list</div>
+                </div><br>
+           
           </div>
          
 
-    <div class="col-md-9 text-center"> <!-- changed class from "col-sm-6-->
-       
-      <div class="container">
-        <br>
+         
+          <div class="col-sm-4" id="main-stage">
+           
+          </div>
+ 
+         <div class="col-sm-4" id="chatBox">
+                     <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <span class="glyphicon glyphicon-comment"></span> Chat
+                           
+                        </div>
+                        <div class="panel-body">
+                            <ul id="chat-window" class="chat">
+                                
 
-      <div id="main-stage" class="sizer">
-       
-       <!--
-       <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/XGSy3_Czz8k"></iframe>
-        -->
-      </div>
-    </div>
-  </div>
- <div class="container">
-    <div class="row">
-        <div class="col-md-9" id="chatBox">
-          <span class="pull-right"></span>
-            <div class="panel panel-success">
-                <div class="panel-heading">
-                    <span class="glyphicon glyphicon-comment"></span> Chat
-                   
-                </div>
-                <div class="panel-body">
-                    <ul id="chat-window" class="chat">
-                        
-
-                    
-                      <!--   <li class="left clearfix"> -->
-                    
-                           <!--  <div class="chat-body clearfix"> -->
-                       <!--          <div class="header"> -->
-                                  <!--   <strong class="primary-font" id="current-user"> </strong>  -->
-<!-- 
-                                  <small class="pull-right text-muted">
-                                        <span class="glyphicon glyphicon-time"></span></small> -->
-                                 
-                                 <!--  <div>
-                                    
-                                    <p>
-                                      
-                                      hello from halley
-                                    </p>
-
-
-                                  </div>
-
-                        </li>  -->
-
-
-                      
-                     
-                    </ul>
-                </div> 
-                <div class="panel-footer">
-                    <div class="input-group">
-                        <input id="chat-message" type="text" class="form-control input-sm" placeholder="Type your message here..." />
-                        <span class="input-group-btn">
-                            <button id="send" class="btn btn-warning btn-sm">
-                                Send</button>
-                        </span>
+                            
+                                              
+                             
+                            </ul>
+                        </div> 
+                        <div class="panel-footer">
+                            <div class="input-group">
+                                <input id="chat-message" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                                <span class="input-group-btn">
+                                    <button id="send" class="btn btn-warning btn-sm">
+                                        Send</button>
+                                </span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+          
         </div>
-    </div>
-</div>
-</div>
-</div>
+      </div>
+  </div>
 
 <!-- Search Modal goes here -->
       <div id="searchModal" class="modal fade" role="dialog">
