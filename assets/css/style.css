@@ -1,23 +1,21 @@
- html
+html
 {
-    overflow: auto;
-   /* min-width: 1080px;*/
+    overflow-x: hidden;
 }
 
 body
 {
     margin: 0;
+    padding: 0;
     box-sizing: border-box;
     background-color: green;
-    
 }
 
 html, body
 {
-  
     height: 100%;
-   
 }
+
 
  
        /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -44,6 +42,7 @@ html, body
     top:92px;
     bottom: 0;
     width:15%;
+
     }
     
     /* Set black background color, white text and some padding */
@@ -161,11 +160,12 @@ html, body
   background: black;
  /* border: 1px solid black;*/
   width: 45%;
-  margin-left: 20%;
+  margin-left: 18%;
   margin-bottom: 0px;
-  height: 90%;
+  height: 100%;
   padding-bottom: 0px;
-  margin-top: 0%;
+  margin-top: 1%;
+  height: 100%;
  
 
 }
@@ -175,7 +175,7 @@ html, body
   margin-left: 3%;
   padding-top: 0px;
   margin-top: 0%;
-  height: 1%;
+  height: auto;
   margin-right: -2%;
   float: right;
 
@@ -184,6 +184,13 @@ html, body
 #chat-window{
   min-height: 1%;
   max-height: 1%;
-  overflow-y: scroll;
+}
+
+.wrapper{
+  width: 1000px;
+  width: 600px;
+  overflow: scroll;
+  position: relative;
+  height: 300px;
 }
 
