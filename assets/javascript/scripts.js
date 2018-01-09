@@ -42,6 +42,9 @@ $(document).ready(function(){
 	
 		//Clear out login field
 		$("#username").val("");
+
+		//Toggle Modal
+		$("#myModal").modal("hide");
 	});
 
 	//On click handler for stage buttons
@@ -289,10 +292,16 @@ function getCookie(cname) {
 
 //Build Rock Paper Scissors Here
 function rockPaperScissors(){
+	var sv;
+
+	database.ref("/players").once("value", function(snapshot){
+		sv = snapshot.val();
+		});
+
 	return 	"<div>"+
-            	"<div><span id='player1'>Player 1</span> VS <span id='player2'>Player 2</span></div>"+
+            	"<div><span id='player1'>"+sv.player1.player+"</span> VS <span id='player2'>"+sv.player2.player+"</span></div>"+
             	"<div id='game-images'>"+
-              		"<img src='assets/images/Filler.png'><img><img src='assets/images/Filler.png'><img>"+
+              		"<img src='assets/images/Filler.png'><img src='assets/images/Filler.png'>"+
             	"</div>"+
             	"<div id='results'>"+(user == 'Guest' ? "Change your user name to join" : "Click to join")+"</div>"+
             	"<div id='game-btn'>"+
@@ -351,15 +360,15 @@ $(document).on("click", "#leave", function(){
 });
 
 $(document).on("click", ".throw", function(){
-	var choice = event.target.value;
+	var choice = event.target.dataset.value;
 	
 	database.ref("/players").once("value", function(snapshot){
 		snapshot.forEach(function(childSnap){
-			if(childSnap.val().player == currentUser){
+			if(childSnap.val().player == user){
+				$("#results").html("You have selected " + choice);
 				childSnap.ref.update({
 					choice: choice
 				});
-				$("#choice").html("You have selected " + choice);
 			}
 		});
 	})
@@ -369,6 +378,9 @@ database.ref("/players").on("value", function(snapshot){
 	var sv = snapshot.val();
 
 	if(user == sv.player1.player || user == sv.player2.player){
+		$("#game-images").html("<img class='throw' src='assets/images/Rock.png' data-value='Rock'>"+
+							   "<img class='throw' src='assets/images/Paper.png' data-value='Paper'>"+
+							   "<img class='throw' src='assets/images/Scissors.png' data-value='Scissors'>");
 		$("#game-btn").html("<button id='leave'>Leave</button>");
 	} else {
 		$("#game-btn").html("<button id='join'>Join</button>");
@@ -437,22 +449,16 @@ function finalizeResults(){
 		$("#results").html(player1 + " chose " + choice1 + " and " + player2 + " also chose " + choice2 + "! Its a tie!");
 	} else if(choice1 == 'Rock' && choice2 == 'Scissors') {
 		$("#results").html(player1 + " chose " + choice1 + " and smashes " + player2 + "'s " + choice2 + "! " + player1 + " wins!");
-		wins1++;
 	} else if(choice1 == 'Paper' && choice2 == 'Rock') {
 		$("#results").html(player1 + " chose " + choice1 + " and smothers " + player2 + "'s " + choice2 + "! " + player1 + " wins!");
-		wins1++;
 	} else if(choice1 == 'Scissors' && choice2 == 'Paper') {
 		$("#results").html(player1 + " chose " + choice1 + " and cuts " + player2 + "'s " + choice2 + "! " + player1 + " wins!");
-		wins1++;
 	} else if(choice1 == 'Rock' && choice2 == 'Paper') {
 		$("#results").html(player2 + " chose " + choice2 + " and smothers " + player1 + "'s " + choice1 + "! " + player2 + " wins!");
-		wins2++;
 	} else if(choice1 == 'Paper' && choice2 == 'Scissors') {
 		$("#results").html(player2 + " chose " + choice2 + " and cuts " + player1 + "'s " + choice1 + "! " + player2 + " wins!");
-		wins2++;
 	} else if(choice1 == 'Scissors' && choice2 == 'Rock') {
 		$("#results").html(player2 + " chose " + choice2 + " and smashes " + player1 + "'s " + choice1 + "! " + player2 + " wins!");
-		wins2++;
 	}
 
 	database.ref("/players/player1").update({
