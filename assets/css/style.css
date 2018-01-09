@@ -204,18 +204,24 @@ html, body
 }
 
 #chat-window{
-  min-height: 1%;
-  max-height: 1%;
+// /*width: 900px;
+    width: 200px; */
+  /*  overflow-y:scroll; */
+    position:relative;
+    height: 300px;
+
+  /*min-height: 1%;
+  max-height: 1%;*/
 }
 
-.wrapper{
-  width: 1000px;
-  width: 600px;
-  overflow: scroll;
-  position: relative;
-  height: 300px;
+.wrapper{ 
+    // width: 1000px;
+    width: 300px; 
+    overflow-y:scroll; 
+    position:relative;
+    height: 300px;
 }
-
+ 
 #send{
   color: darkorange;
   font-family: 'Joti One', cursive;
