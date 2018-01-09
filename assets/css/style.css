@@ -171,19 +171,31 @@ html, body
 }
 
 #chatBox{
-  width: 33%;
-  margin-left: 3%;
+/*  width: 33%;*/
+  margin-left: 20px;
   padding-top: 0px;
   margin-top: 0%;
   height: 1%;
-  margin-right: -2%;
-  float: right;
+/*  margin-right: -2%;*/
+/*  float: right;*/
 
 }
 
 #chat-window{
-  min-height: 1%;
-  max-height: 1%;
-  overflow-y: scroll;
+// /*width: 900px;
+    width: 200px; */
+  /*  overflow-y:scroll; */
+    position:relative;
+    height: 300px;
+
+  /*min-height: 1%;
+  max-height: 1%;*/
 }
 
+.wrapper{ 
+    // width: 1000px;
+    width: 300px; 
+    overflow-y:scroll; 
+    position:relative;
+    height: 300px;
+}
