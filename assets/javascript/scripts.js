@@ -562,7 +562,7 @@ function renderHangman(){
 		var letterGuesses = sv.letterGuesses;
 
 		$("#main-stage").html(
-		"<div>"+
+		"<div style='background:white'>"+
 			"<div class='column'>"+
 			"<div style='font-family: monospace; font-size: 24px'>"+
 				pictures[guessesLeft]+
