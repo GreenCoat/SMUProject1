@@ -224,10 +224,10 @@ html, body
 
 .wrapper{ 
     // width: 1000px;
-    width: 300px; 
+    width: 1300px; 
     overflow-y:scroll; 
     position:relative;
-    height: 300px;
+    height: 598px;
 }
  
 #send{
