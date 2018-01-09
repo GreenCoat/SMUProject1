@@ -163,7 +163,7 @@ $(document).ready(function(){
 		//If stage isn't null, display it
 		if(sv.stage != null && sv.type != null){
 			if(sv.type == 'Giphy'){
-				$("#main-stage").html("<img src='"+sv.stage+"'>");
+				$("#main-stage").html("<div class='videoWrapper'><img 'width='500' height='300'' src='"+sv.stage+"'></div>");
 			} else if (sv.type == 'YouTube'){
 			  $("#main-stage").html("<div class='videoWrapper'><iframe 'width='500' height='300'' src='https://www.youtube.com/embed/"+sv.stage+"?autoplay=1'></iframe></div>");
 			} else if (sv.type == 'Game' && sv.stage == 'RPS'){
