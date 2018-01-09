@@ -76,7 +76,11 @@ $(document).ready(function(){
 									 "<div class='game-btn' data-value='Hangman'>Hangman</div>");
 
 			$(".game-btn").on("click", function(event){
-				displayImage(event.target.dataset.value, "Game");
+				var val = event.target.dataset.value;
+				if(val == 'Hangman'){
+					hangmanReset();
+				};
+				displayImage(val, "Game");
 			});
 		} else {
 			$("#search-result").html("");
@@ -188,12 +192,6 @@ $(document).ready(function(){
 		document.createElement("p")
 		p.innerHTML = sv.message
 		$("#chat-window").prepend(p)
-
-
-		
-		// Puts chat message in chat window
-		// $("#chat-window").append("<div>"+sv.user+": "+sv.message+"</div>");
-
 	});
 
 
@@ -269,7 +267,7 @@ $(document).ready(function(){
 				image = dataArray[i].images.fixed_width_small_still.url;
 				original = dataArray[i].images.original.url
 
-				$("#search-result").append("<img class='img-source' src='"+image+"' data-value='"+original+"'>");
+				$("#search-result").append("<img class='img-source' src='"+image+"' data-value='"+original+"' style='margin:2px'>");
 			}
  		});
 	}
