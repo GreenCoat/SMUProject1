@@ -76,7 +76,11 @@ $(document).ready(function(){
 									 "<div class='game-btn' data-value='Hangman'>Hangman</div>");
 
 			$(".game-btn").on("click", function(event){
-				displayImage(event.target.dataset.value, "Game");
+				var val = event.target.dataset.value;
+				if(val == 'Hangman'){
+					hangmanReset();
+				};
+				displayImage(val, "Game");
 			});
 		} else {
 			$("#search-result").html("");
