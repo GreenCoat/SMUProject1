@@ -147,7 +147,7 @@ $(document).ready(function(){
 			if(sv.type == 'Giphy'){
 				$("#main-stage").html("<img src='"+sv.stage+"'>");
 			} else if (sv.type == 'YouTube'){
-				$("#main-stage").html("<iframe 'width='500' height='400'' src='https://www.youtube.com/embed/"+sv.stage+"?autoplay=1'></iframe>")
+				$("#main-stage").html("<div class='videoWrapper'><iframe 'width='500' height='300'' src='https://www.youtube.com/embed/"+sv.stage+"?autoplay=1'></iframe></div>")
 			} else if (sv.type == 'Game'){
 				$("#main-stage").html(rockPaperScissors());
 			}
