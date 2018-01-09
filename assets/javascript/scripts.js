@@ -293,19 +293,26 @@ function getCookie(cname) {
 //Build Rock Paper Scissors Here
 function rockPaperScissors(){
 	var sv;
+	var player = false;
 
 	database.ref("/players").once("value", function(snapshot){
 		sv = snapshot.val();
-		});
+	});
 
-	return 	"<div>"+
+	if(user == sv.player1.player || user == sv.player2.player)
+		player = true;
+
+	return 	"<div style='background:white'>"+
             	"<div><span id='player1'>"+sv.player1.player+"</span> VS <span id='player2'>"+sv.player2.player+"</span></div>"+
             	"<div id='game-images'>"+
-              		"<img src='assets/images/Filler.png'><img src='assets/images/Filler.png'>"+
+              		(player ? "<img class='throw' src='assets/images/Rock.png' data-value='Rock'>"+
+							   "<img class='throw' src='assets/images/Paper.png' data-value='Paper'>"+
+							   "<img class='throw' src='assets/images/Scissors.png' data-value='Scissors'>":
+							   "<img src='assets/images/Filler.png'><img src='assets/images/Filler.png'>")+
             	"</div>"+
             	"<div id='results'>"+(user == 'Guest' ? "Change your user name to join" : "Click to join")+"</div>"+
             	"<div id='game-btn'>"+
-              		"<button id='join'>Join</button>"+
+              		(player ? "<button id='leave'>Leave</button>" : "<button id='join'>Join</button>")+
             	"</div>"+
           	"</div>"
 }
@@ -467,7 +474,7 @@ function finalizeResults(){
 
 	database.ref("/players/player2").update({
 		choice: 'None'
-	}); 
+	});
 }
 
 //Build Tic-Tac-Toe
