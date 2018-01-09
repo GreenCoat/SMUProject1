@@ -227,7 +227,7 @@ $(document).ready(function(){
 
 	function giphySearch(q){
 		//AJAX call to retrieve data
-		var xhr = $.get("http://api.giphy.com/v1/gifs/search?q="+q+"&api_key=USa3C1wTZmYVJZpCU9yItXceOqvm8h2w&limit=10");
+		var xhr = $.get("https://api.giphy.com/v1/gifs/search?q="+q+"&api_key=USa3C1wTZmYVJZpCU9yItXceOqvm8h2w&limit=10");
 		xhr.done(function(data) { 
 			//Put data in a variable
 			var dataArray = data.data;
