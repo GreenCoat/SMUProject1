@@ -165,15 +165,6 @@ html, body
   font-size: 30px;
 }
 
-#iFrameID{
-  border: 0;
-  width:50%; 
-  height:50%;
-
-  /*frameborder: 0;
-  scrolling: no;*/
-}
-
 .centered {
     text-align: center;
 }
