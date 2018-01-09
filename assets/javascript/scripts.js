@@ -192,12 +192,6 @@ $(document).ready(function(){
 		document.createElement("p")
 		p.innerHTML = sv.message
 		$("#chat-window").prepend(p)
-
-
-		
-		// Puts chat message in chat window
-		// $("#chat-window").append("<div>"+sv.user+": "+sv.message+"</div>");
-
 	});
 
 
