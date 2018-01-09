@@ -212,18 +212,12 @@ html, body
 }
 
 #chat-window{
-// /*width: 900px;
-    width: 200px; */
-  /*  overflow-y:scroll; */
     position:relative;
     height: 300px;
-
-  /*min-height: 1%;
-  max-height: 1%;*/
 }
 
 .wrapper{ 
-    // width: 1000px;
+    width: 1000px;
     width: 1300px; 
     overflow-y:scroll; 
     position:relative;
@@ -234,7 +228,6 @@ html, body
   color: darkorange;
   font-family: 'Joti One', cursive;
   background-color: green;
- /* font-size: 50px;*/
 }
 
 #panelTitles{

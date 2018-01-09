@@ -267,7 +267,7 @@ $(document).ready(function(){
 				image = dataArray[i].images.fixed_width_small_still.url;
 				original = dataArray[i].images.original.url
 
-				$("#search-result").append("<img class='img-source' src='"+image+"' data-value='"+original+"'>");
+				$("#search-result").append("<img class='img-source' src='"+image+"' data-value='"+original+"' style='margin:2px'>");
 			}
  		});
 	}
