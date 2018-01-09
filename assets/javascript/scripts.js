@@ -51,6 +51,14 @@ $(document).ready(function(){
 
 		//Display which search method will be used
 		$("#search-title").text(search);
+
+		if(search == "Game"){
+			$("#search-result").html("<div class='game-btn'>Rock Paper Scissors</div>");
+
+			$(".game-btn").on("click", function(){
+				displayImage("<div>Rock Paper Scissors</div>", "Game");
+			});
+		}
 	});
 
 	//On click button for searching for content
@@ -133,6 +141,8 @@ $(document).ready(function(){
 				$("#main-stage").html("<img src='"+sv.stage+"'>");
 			} else if (sv.type == 'YouTube'){
 				$("#main-stage").html("<iframe src='https://www.youtube.com/embed/"+sv.stage+"?autoplay=1'></iframe>")
+			} else if (sv.type == 'Game'){
+				$("#main-stage").html(rockPaperScissors());
 			}
 		}
 	});
@@ -275,3 +285,187 @@ function getCookie(cname) {
     	}
     	return "";
 }
+
+
+//Build Rock Paper Scissors Here
+function rockPaperScissors(){
+	return 	"<div>"+
+            	"<div><span id='player1'>Player 1</span> VS <span id='player2'>Player 2</span></div>"+
+            	"<div id='game-images'>"+
+              		"<img src='assets/images/Filler.png'><img><img src='assets/images/Filler.png'><img>"+
+            	"</div>"+
+            	"<div id='results'>"+(user == 'Guest' ? "Change your user name to join" : "Click to join")+"</div>"+
+            	"<div id='game-btn'>"+
+              		"<button id='join'>Join</button>"+
+            	"</div>"+
+          	"</div>"
+}
+
+$(document).on("click", "#join", function(){
+	var player1;
+	var player2;
+
+	database.ref("/players/player1").once('value', function(snapshot){
+		player1 = snapshot.val();
+	});
+
+	database.ref("/players/player2").once('value', function(snapshot){
+		player2 = snapshot.val();
+	});
+
+	if(player1.player == "Player 1" && user != 'Guest'){
+		database.ref("/players/player1").update({
+			player: user
+		});
+	} else if(player2.player == "Player 2" && user != 'Guest'){
+		database.ref("/players/player2").update({
+			player: user
+		});
+	} 
+});
+
+$(document).on("click", "#leave", function(){
+	var player1;
+	var player2;
+
+	database.ref("/players/player1").once('value', function(snapshot){
+		player1 = snapshot.val();
+	});
+
+	database.ref("/players/player2").once('value', function(snapshot){
+		player2 = snapshot.val();
+	});
+
+	if(player1.player == user){
+		database.ref("/players/player1").update({
+			player: 'Player 1',
+			choice: 'None'
+		});
+	} 
+	if(player2.player == user){
+		database.ref("/players/player2").update({
+			player: 'Player 2',
+			choice: 'None'
+		});
+	} 
+});
+
+$(document).on("click", ".throw", function(){
+	var choice = event.target.value;
+	
+	database.ref("/players").once("value", function(snapshot){
+		snapshot.forEach(function(childSnap){
+			if(childSnap.val().player == currentUser){
+				childSnap.ref.update({
+					choice: choice
+				});
+				$("#choice").html("You have selected " + choice);
+			}
+		});
+	})
+});
+
+database.ref("/players").on("value", function(snapshot){
+	var sv = snapshot.val();
+
+	if(user == sv.player1.player || user == sv.player2.player){
+		$("#game-btn").html("<button id='leave'>Leave</button>");
+	} else {
+		$("#game-btn").html("<button id='join'>Join</button>");
+	}
+
+
+});
+
+database.ref("/players/player1").on("value", function(snapshot){
+	if(snapshot.val() == null){
+		database.ref("/players/player1").update({
+			player: "Player 1",
+			choice: "None"
+		});
+	} else {
+		$("#player1").html(snapshot.val().player);
+		checkThrows();
+	}
+});
+
+database.ref("/players/player2").on("value", function(snapshot){
+	if(snapshot.val() == null){
+		database.ref("/players/player2").update({
+			player: "Player 2",
+			choice: "None"
+		});
+	} else {
+		$("#player2").html(snapshot.val().player);	
+		checkThrows();
+	}
+});
+
+function checkThrows(){
+	var player1 = database.ref("/players/player1");
+	var player2 = database.ref("/players/player2");
+
+	player1.once('value', function(snap){
+		if(snap.val().choice != 'None'){
+			player2.once('value', function(snap){
+				if(snap.val().choice != 'None'){
+					finalizeResults();
+				}
+			});
+		}
+	});
+
+}
+
+function finalizeResults(){
+	var player1;
+	var player2;
+	var choice1;
+	var choice2;
+
+	database.ref("/players/player1").once('value', function(snap){
+		player1 = snap.val().player;
+		choice1 = snap.val().choice;
+	});
+
+	database.ref("/players/player2").once('value', function(snap){
+		player2 = snap.val().player;
+		choice2 = snap.val().choice;
+	});
+
+	if(choice1 == choice2){
+		$("#results").html(player1 + " chose " + choice1 + " and " + player2 + " also chose " + choice2 + "! Its a tie!");
+	} else if(choice1 == 'Rock' && choice2 == 'Scissors') {
+		$("#results").html(player1 + " chose " + choice1 + " and smashes " + player2 + "'s " + choice2 + "! " + player1 + " wins!");
+		wins1++;
+	} else if(choice1 == 'Paper' && choice2 == 'Rock') {
+		$("#results").html(player1 + " chose " + choice1 + " and smothers " + player2 + "'s " + choice2 + "! " + player1 + " wins!");
+		wins1++;
+	} else if(choice1 == 'Scissors' && choice2 == 'Paper') {
+		$("#results").html(player1 + " chose " + choice1 + " and cuts " + player2 + "'s " + choice2 + "! " + player1 + " wins!");
+		wins1++;
+	} else if(choice1 == 'Rock' && choice2 == 'Paper') {
+		$("#results").html(player2 + " chose " + choice2 + " and smothers " + player1 + "'s " + choice1 + "! " + player2 + " wins!");
+		wins2++;
+	} else if(choice1 == 'Paper' && choice2 == 'Scissors') {
+		$("#results").html(player2 + " chose " + choice2 + " and cuts " + player1 + "'s " + choice1 + "! " + player2 + " wins!");
+		wins2++;
+	} else if(choice1 == 'Scissors' && choice2 == 'Rock') {
+		$("#results").html(player2 + " chose " + choice2 + " and smashes " + player1 + "'s " + choice1 + "! " + player2 + " wins!");
+		wins2++;
+	}
+
+	database.ref("/players/player1").update({
+		choice: 'None'
+	}); 
+
+	database.ref("/players/player2").update({
+		choice: 'None'
+	}); 
+}
+
+//Build Tic-Tac-Toe
+
+//Build Hangman
+
+
