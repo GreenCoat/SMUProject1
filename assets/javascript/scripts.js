@@ -21,6 +21,22 @@ var fileTypes = ["jpg", "png", "gif"];
 //Variable for tracking what type of search is being performed
 var search;
 
+//Data used for Hangman
+var wordBank = [["Fruit", "apple", "orange", "tomato", "banana", "durian", "lemon", "peach", "grape", "mango"],
+				["Vegetable", "cucumber", "carrot", "potato", "onion", "pepper", "broccoli", "squash", "cabbage", "lettuce"],
+				["Animal", "monkey", "elephant", "parrot", "horse", "sheep", "zebra", "koala", "cougar", "raccoon", "eagle"],
+				["Mineral", "ruby", "onyx", "sapphire", "jade", "topaz", "diamond", "obsidian", "lapis", "sphene", "zircon"]];
+var pictures = [
+	"....._______<br/>.....|.....|<br/>.....X.....|<br/>..../|\\....|<br/>.....|.....|<br/>..../.\\....|<br/>...........|<br/>============",
+	"....._______<br/>.....|.....|<br/>.....0.....|<br/>..../|\\....|<br/>.....|.....|<br/>..../......|<br/>...........|<br/>============",
+	"....._______<br/>.....|.....|<br/>.....0.....|<br/>..../|\\....|<br/>.....|.....|<br/>...........|<br/>...........|<br/>============",
+	"....._______<br/>.....|.....|<br/>.....0.....|<br/>..../|\\....|<br/>...........|<br/>...........|<br/>...........|<br/>============",
+	"....._______<br/>.....|.....|<br/>.....0.....|<br/>..../|.....|<br/>...........|<br/>...........|<br/>...........|<br/>============",
+	"....._______<br/>.....|.....|<br/>.....0.....|<br/>.....|.....|<br/>...........|<br/>...........|<br/>...........|<br/>============",
+	"....._______<br/>.....|.....|<br/>.....0.....|<br/>...........|<br/>...........|<br/>...........|<br/>...........|<br/>============",
+	"....._______<br/>.....|.....|<br/>...........|<br/>...........|<br/>...........|<br/>...........|<br/>...........|<br/>============",
+	]
+
 //Wait for document to load
 $(document).ready(function(){
 	//Displays the default user name
@@ -56,11 +72,11 @@ $(document).ready(function(){
 		$("#search-title").text(search);
 
 		if(search == "Game"){
-			$("#search-result").html("<div class='game-btn'>Rock Paper Scissors</div>"+
-									 "<div class='game-btn'>Hangman</div>");
+			$("#search-result").html("<div class='game-btn' data-value='RPS'>Rock Paper Scissors</div>"+
+									 "<div class='game-btn' data-value='Hangman'>Hangman</div>");
 
-			$(".game-btn").on("click", function(){
-				displayImage("RPS", "Game");
+			$(".game-btn").on("click", function(event){
+				displayImage(event.target.dataset.value, "Game");
 			});
 		} else {
 			$("#search-result").html("");
@@ -82,9 +98,6 @@ $(document).ready(function(){
 		switch(search){
 			case 'YouTube': 
 				youtubeSearch(q);
-				break;
-			case 'Spotify':
-				console.log('Spotify');
 				break;
 			case 'Giphy':
 				giphySearch(q);
@@ -132,7 +145,12 @@ $(document).ready(function(){
 				date: date
 			});
 		}
-	
+		
+		//Send chat message to Hangman if playing
+		if(message.length == 1){
+			letterGuess(message);
+		}
+
 		//Clear out message field
 		$("#chat-message").val("");
 	});
@@ -147,8 +165,10 @@ $(document).ready(function(){
 				$("#main-stage").html("<img src='"+sv.stage+"'>");
 			} else if (sv.type == 'YouTube'){
 				$("#main-stage").html("<iframe src='https://www.youtube.com/embed/"+sv.stage+"?autoplay=1'></iframe>")
-			} else if (sv.type == 'Game'){
+			} else if (sv.type == 'Game' && sv.stage == 'RPS'){
 				$("#main-stage").html(rockPaperScissors());
+			} else if (sv.type == 'Game' && sv.stage == 'Hangman'){
+				$("#main-stage").html(renderHangman());
 			}
 		}
 	});
@@ -480,8 +500,148 @@ function finalizeResults(){
 	});
 }
 
-//Build Tic-Tac-Toe
 
 //Build Hangman
+function hangmanReset(){
+	var word = getWord(wordBank);
 
+	database.ref("/hangman").set({
+		guessesLeft: 7,
+		answer: word.answer,
+		hiddenWord: word.hiddenWord,
+		letterGuesses: [" "],
+		type: word.type
+	});
+}
+
+function getWord(list){
+	var type;
+	var answer = [];
+	var hiddenWord = [];
+	var word
+
+
+	list = list[Math.floor(Math.random()*list.length)];
+	type = [list[0]];
+	word = list[Math.floor(Math.random() * list.length-1)+1];
+	for(var i = 0; i < word.length; i++) {
+		answer.push(word.charAt(i));
+		if(i < word.length - 1) {
+			answer.push(" ");
+		};
+	};
+	
+	answer.forEach(function(val){
+		if(val === " ") {
+			hiddenWord.push(val);
+		} else {
+			hiddenWord.push("_");
+		}
+	});
+
+	return {type: type, answer: answer, hiddenWord: hiddenWord};
+};
+
+database.ref("/hangman").on("value", function(snapshot){
+	if(snapshot.val() == null){
+		hangmanReset();
+	}
+	renderHangman();
+});
+
+function renderHangman(){
+	database.ref("/hangman").once("value", function(snapshot){
+		var sv = snapshot.val();
+
+		var hiddenWord = sv.hiddenWord;
+		var type = sv.type;
+		var guessesLeft = sv.guessesLeft;
+		var letterGuesses = sv.letterGuesses;
+
+		$("#main-stage").html(
+		"<div>"+
+			"<div class='column'>"+
+			"<div>"+
+				pictures[guessesLeft]+
+			"</div>"+
+			"<div>Current Word</div>"+
+			"<div>"+displayWord(hiddenWord)+"</div>"+
+			
+			"<div>Letters Guessed</div>"+
+			"<div>"+displayWord(letterGuesses)+"</div>"+
+
+			"<div>Guesses remaining:</div>"+
+			"<div>"+guessesLeft+"</div>"+
+
+			"<div>Category:</div>"+
+			"<div>"+type+"</div>"+
+		"</div>"+
+
+		"<div id='instructionDisplay' class='column'>"+
+			"<p>Uh oh, looks like someone is in trouble.  Due to the perverse legal system of this land they will be executed unless you can guess an arbitrary word within 7 moves.</p>"+
+
+			"<p>Type in a single letter to make a guess.</p>"+
+		"</div>"
+		);
+	});
+}
+
+function displayWord(array){
+	var tempString = "";
+	if(array != undefined){
+		for(var i = 0; i < array.length; i++){
+			tempString += array[i];
+		}
+	}
+	return tempString;
+}
+
+function letterGuess(letter){
+	var l = letter.toLowerCase();
+	var answer;
+	var hidden;
+	var guessesLeft;
+	var letterGuesses;
+
+	
+	database.ref("/hangman").once("value", function(snapshot){
+		var sv = snapshot.val();
+
+		answer = sv.answer;
+		hidden = sv.hiddenWord;
+		guessesLeft = sv.guessesLeft;
+		letterGuesses = sv.letterGuesses;
+	});
+
+	if(hidden.indexOf(l.toUpperCase()) == -1 && letterGuesses.indexOf(l.toUpperCase()) == -1) {
+		if(l == "a" || l == "b" || l == "c" || l == "d" || l == "e" || l == "f" ||
+	   	   l == "g" || l == "h" || l == "i" || l == "j" || l == "k" || l == "l" ||
+	       l == "m" || l == "n" || l == "o" || l == "p" || l == "q" || l == "r" ||
+	       l == "s" || l == "t" || l == "u" || l == "v" || l == "w" || l == "x" ||
+	       l == "y" || l == "z") {
+
+			if(answer.indexOf(l) != -1){
+				for(var i = 0; i < answer.length; i++){
+					if(answer[i] == l){
+						hidden[i] = answer[i].toUpperCase();
+						database.ref("/hangman").update({hiddenWord: hidden});
+					}
+				}
+
+				if(hidden.indexOf("_") == -1){
+				
+				hangmanReset();
+				}
+			} else {
+				letterGuesses.push(l.toUpperCase());
+				letterGuesses.push(" ");
+				guessesLeft--;
+				database.ref("/hangman").update({letterGuesses: letterGuesses, guessesLeft: guessesLeft});
+				if(guessesLeft == 0){
+					hangmanReset();
+				} 
+			}
+		};
+	}
+};
 
