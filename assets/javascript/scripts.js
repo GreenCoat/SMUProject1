@@ -562,22 +562,23 @@ function renderHangman(){
 		var letterGuesses = sv.letterGuesses;
 
 		$("#main-stage").html(
-		"<div>"+
+		"<div style='background:white'>"+
 			"<div class='column'>"+
-			"<div>"+
+			"<div style='font-family: monospace; font-size: 24px'>"+
 				pictures[guessesLeft]+
 			"</div>"+
-			"<div>Current Word</div>"+
+
+			"<div>Category:</div>"+
+			"<div>"+type+"</div>"+
+
+			"<div>Current Word:</div>"+
 			"<div>"+displayWord(hiddenWord)+"</div>"+
 			
-			"<div>Letters Guessed</div>"+
+			"<div>Letters Guessed:</div>"+
 			"<div>"+displayWord(letterGuesses)+"</div>"+
 
 			"<div>Guesses remaining:</div>"+
 			"<div>"+guessesLeft+"</div>"+
-
-			"<div>Category:</div>"+
-			"<div>"+type+"</div>"+
 		"</div>"+
 
 		"<div id='instructionDisplay' class='column'>"+
