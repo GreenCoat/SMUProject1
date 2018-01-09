@@ -56,11 +56,14 @@ $(document).ready(function(){
 		$("#search-title").text(search);
 
 		if(search == "Game"){
-			$("#search-result").html("<div class='game-btn'>Rock Paper Scissors</div>");
+			$("#search-result").html("<div class='game-btn'>Rock Paper Scissors</div>"+
+									 "<div class='game-btn'>Hangman</div>");
 
 			$(".game-btn").on("click", function(){
-				displayImage("<div>Rock Paper Scissors</div>", "Game");
+				displayImage("RPS", "Game");
 			});
+		} else {
+			$("#search-result").html("");
 		}
 	});
 
@@ -161,7 +164,7 @@ $(document).ready(function(){
 
 		document.createElement("p")
 		p.innerHTML = sv.message
-		$("#chat-window").append(p)
+		$("#chat-window").prepend(p)
 
 
 		
@@ -243,7 +246,7 @@ $(document).ready(function(){
 				image = dataArray[i].images.fixed_width_small_still.url;
 				original = dataArray[i].images.original.url
 
-				$("#search-result").append("<button class='img-source'><img src='"+image+"' data-value='"+original+"'></button>");
+				$("#search-result").append("<img class='img-source' src='"+image+"' data-value='"+original+"'>");
 			}
  		});
 	}
