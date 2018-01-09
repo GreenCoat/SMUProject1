@@ -1,7 +1,7 @@
-html
+/*html
 {
     overflow-x: hidden;
-}
+}*/
 
 body
 {
@@ -16,9 +16,12 @@ html, body
     height: 100%;
 }
 
-
- 
+.container-fluid{
+  min-height: 100%;
+  overflow: hidden;
+ }
        /* Remove the navbar's default margin-bottom and rounded borders */ 
+
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
@@ -34,6 +37,9 @@ html, body
       background-color: #f1f1f1;
       height: 100%;
       color: green;
+      margin-bottom: -600px;
+      padding-bottom: 600px;
+      
     }
 
     #sidebar{
@@ -41,7 +47,7 @@ html, body
     left:0;
     top:92px;
     bottom: 0;
-    width:15%;
+    width:18%;
 
     }
     
@@ -66,7 +72,7 @@ html, body
     }
 
   #welcomeMsg{
-    color: white;
+    color: darkorange;
     padding-top: 10px;
     font-size: 30px;
     font-family: 'Joti One', cursive;
@@ -74,7 +80,7 @@ html, body
   }
 
  h1{
-  color: white;
+  color: darkorange;
   font-family: 'Joti One', cursive;
   font-size: 50px;
  }
@@ -94,7 +100,9 @@ html, body
     margin-top: 20px;
     font-size: 20px;
     font-family: 'Joti One', cursive;
-
+    color: darkorange;
+    background-color: green;
+    margin-right: 10px;
 }
 
 .modal-header{
@@ -156,29 +164,43 @@ html, body
   font-size: 30px;
 }
 
+/*#iFrameID{
+  border: 0;
+  width:40; 
+  height:300;
+  /*frameborder: 0;
+  scrolling: no;*/
+/*}*/
+
+.centered {
+    text-align: center;
+}
+
+
 #main-stage{
   background: black;
- /* border: 1px solid black;*/
-  width: 45%;
-  margin-left: 18%;
-  margin-bottom: 0px;
+  width: 43%;
+  margin-left: 22%;
   height: 100%;
-  padding-bottom: 0px;
   margin-top: 1%;
-  height: 100%;
- 
-
-}
+  margin-bottom: -640px;
+  padding-bottom: 500px;
+  padding-top: 200px;
+  }
 
 #chatBox{
   width: 33%;
-  margin-left: 3%;
-  padding-top: 0px;
-  margin-top: 0%;
+  margin-left: 0;
+  padding-top: 20px;
+  margin-top: 0;
   height: auto;
-  margin-right: -2%;
+  margin-right: -30.4px;
   float: right;
-
+  background-color: #f1f1f1;
+  bottom: 0;
+  margin-bottom: -600px;
+  padding-bottom: 600px;
+  top: 0px;
 }
 
 #chat-window{
@@ -194,3 +216,16 @@ html, body
   height: 300px;
 }
 
+#send{
+  color: darkorange;
+  font-family: 'Joti One', cursive;
+  background-color: green;
+ /* font-size: 50px;*/
+}
+
+#panelTitles{
+  color: darkorange;
+  font-family: 'Joti One', cursive;
+  background-color: green;
+  font-size: 15px;
+}
