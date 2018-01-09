@@ -134,6 +134,7 @@ $(document).ready(function(){
 	$("#send").on("click", function(event){
 		//Keep submit button from refreshing the page
 		event.preventDefault();
+		// Adds date to messages
         var date = moment().format('MMM Do, h:mm a');
 		//Get message from message field
 		var message = $("#chat-message").val().trim();
@@ -164,7 +165,7 @@ $(document).ready(function(){
 			if(sv.type == 'Giphy'){
 				$("#main-stage").html("<img src='"+sv.stage+"'>");
 			} else if (sv.type == 'YouTube'){
-				$("#main-stage").html("<iframe src='https://www.youtube.com/embed/"+sv.stage+"?autoplay=1'></iframe>")
+			  $("#main-stage").html("<div class='videoWrapper'><iframe 'width='500' height='300'' src='https://www.youtube.com/embed/"+sv.stage+"?autoplay=1'></iframe></div>");
 			} else if (sv.type == 'Game' && sv.stage == 'RPS'){
 				$("#main-stage").html(rockPaperScissors());
 			} else if (sv.type == 'Game' && sv.stage == 'Hangman'){
@@ -176,11 +177,13 @@ $(document).ready(function(){
 	//Update event for DB that also retrieves messages
 	database.ref("/messages").on("child_added", function(snapshot){	
 		//Retrieves data snapshot
+		var tab = '&nbsp; &nbsp;';
 		var sv = snapshot.val();
-		var p = '<div class="container"><span>'
-				+sv.user+'</span><p>'
+		var p = '<div class="container"><strong><span>'
+				+sv.user+'</span></strong>' 
+				+tab
+				+sv.date+'<span class= ""></span></small> <p>'
 				+sv.message+'</p><span class="time-right"> </span></div><small class="pull-right text-muted">'
-				+sv.date+'<span class="glyphicon glyphicon-time"></span></small>'
 
 		document.createElement("p")
 		p.innerHTML = sv.message

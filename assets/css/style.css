@@ -160,21 +160,15 @@ html, body
 
 .stage-btn{
   padding-left: 20px;
+  padding-left: 10px;
   font-family: 'Joti One', cursive;
   font-size: 30px;
 }
 
-/*#iFrameID{
-  border: 0;
-  width:40; 
-  height:300;
-  /*frameborder: 0;
-  scrolling: no;*/
-/*}*/
-
 .centered {
     text-align: center;
 }
+
 
 
 #main-stage{
@@ -185,8 +179,22 @@ html, body
   margin-top: 1%;
   margin-bottom: -640px;
   padding-bottom: 500px;
-  padding-top: 200px;
+  padding-top: 100px;
   }
+
+  .videoWrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+.videoWrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
 #chatBox{
   width: 33%;
@@ -204,18 +212,24 @@ html, body
 }
 
 #chat-window{
-  min-height: 1%;
-  max-height: 1%;
+// /*width: 900px;
+    width: 200px; */
+  /*  overflow-y:scroll; */
+    position:relative;
+    height: 300px;
+
+  /*min-height: 1%;
+  max-height: 1%;*/
 }
 
-.wrapper{
-  width: 1000px;
-  width: 600px;
-  overflow: scroll;
-  position: relative;
-  height: 300px;
+.wrapper{ 
+    // width: 1000px;
+    width: 1300px; 
+    overflow-y:scroll; 
+    position:relative;
+    height: 598px;
 }
-
+ 
 #send{
   color: darkorange;
   font-family: 'Joti One', cursive;
