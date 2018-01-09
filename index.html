@@ -131,14 +131,16 @@
                         </div>
                       </div> 
                         <div class="panel-footer">
+                          <form>
                             <div class="input-group">
                                 <input id="chat-message" type="text" class="form-control input-sm" placeholder="Type your message here..." />
 
                                 <span class="input-group-btn">
-                                    <button id="send" class="btn btn-warning btn-sm">
+                                    <button type="submit" id="send" class="btn btn-warning btn-sm">
                                         Send</button>
                                 </span>
                             </div>
+                          </form>
                         </div>
               </div>
          </div>
@@ -159,15 +161,17 @@
                       </div>
 
                   <!-- Add the modal body here -->
-                    <div class="modal-body">                          
+                    <div class="modal-body">
+                      <form>                          
                           <div class="input-group search">
-                              <input type="text"  id="search-query" class="form-control" placeholder="Search here"/>
+                              <input type="text"  id="search-query" class="form-control input-sm" placeholder="Search here"/>
                               <span class="input-group-addon">
-                                <button id="search-submit" class="btn btn-default" type="submit">
+                                <button type="submit" id="search-submit" class="btn btn-default">
                                   <i class="glyphicon glyphicon-search"></i>
                                 </button>
                               </span>
                           </div>
+                      </form>
                               <div id="search-result" class="well">Search Results go here</div>
                     </div>
                                           
