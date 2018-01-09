@@ -69,7 +69,7 @@
       <div class="row content">
            <div class="col-sm-4 sidenav" id="sidebar">   <!-- Sidenav with users online list box here-->
             <div class="panel panel-success">
-                <div class="panel-heading">Upload to Stage</div>
+                <div class="panel-heading" id="panelTitles">Upload to Stage</div>
                 <ul class="list-inline">
                   <li>
                     <!-- Youtube search button goes here -->
@@ -78,16 +78,10 @@
                   </li>
 
 
-                  <li>
-                    <!-- Spotify search button goes here -->
-                    <a href="#searchModal" class="stage-btn" data-toggle="modal" data-target="#searchModal" data-value="Spotify"><i class="fa fa-spotify" aria-hidden="true" style="font-size:36px"></i></a>
-         
-                  </li>
-
-                 
+                       
                   <li>
                     <!-- Giphy modal begins here -->
-                     <a href="#searchModal" class="stage-btn" data-toggle="modal" data-target="#searchModal" data-value="Giphy"><img src="./assets/images/giphy_ico.jpg" alt="Giphy" style="width:40px;height:40px;"></a>
+                     <a href="#searchModal" class="stage-btn" data-toggle="modal" data-target="#searchModal" data-value="Giphy"><i class="fa fa-file-image-o" aria-hidden="true"></i></a>
             
                   </li>
 
@@ -95,7 +89,7 @@
 
                   <li>
                     <!--Game icon goes here -->
-                    <a class="test" href="#" data-toggle="tooltip" data-placement="game" title="Play a Game?"><i class="fa fa-gamepad" style="font-size:36px"></i></a>
+                    <a href="#searchModal" class="stage-btn" data-toggle="modal" data-target="#searchModal" data-value="Game" title="Play a Game?"><i class="fa fa-gamepad" style="font-size:36px"></i></a>
 
                   </li>
            
@@ -105,30 +99,27 @@
             </div><br>
           
                 <div class="panel panel-success">
-                  <div class="panel-heading">Participants online</div>
+                  <div class="panel-heading" id="panelTitles">Participants online</div>
                   <div id="user-list" class="panel-body">User list</div>
                 </div><br>
            
           </div>
-         
-
-         
-          <div class="col-sm-4" id="main-stage">
+      
+          <div class="col-sm-4 centered" id="main-stage">
            
           </div>
  
-         
-         <div class="col-sm-4" id="chatBox">
-
+         <div class="col-sm-4 sidenav" id="chatBox">
+          
                      <div class="panel panel-success">
-                        <div class="panel-heading">
+                        <div class="panel-heading" id="panelTitles">
                             <span class="glyphicon glyphicon-comment"></span> Chat
 
                            
                         </div>
-                  
-                      <div class ="wrapper"> <!-- opening wrapper -->
-                         <div class="panel-body">
+
+                      <div class="wrapper">
+                        <div class="panel-body">
                             <ul id="chat-window" class="chat">
                                 
                       
@@ -136,13 +127,9 @@
                             
 
                             </ul>
-              
 
-                        </div> 
-
-                       </div> <!-- closing wrapper-->
-
-
+                        </div>
+                      </div> 
                         <div class="panel-footer">
                             <div class="input-group">
                                 <input id="chat-message" type="text" class="form-control input-sm" placeholder="Type your message here..." />
@@ -156,6 +143,7 @@
               </div>
          </div>
       </div>
+    </div> <!-- end wrapper for chatbox here -->
   </div>
 
 
