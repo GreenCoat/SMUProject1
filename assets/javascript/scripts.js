@@ -79,6 +79,8 @@ $(document).ready(function(){
 				var val = event.target.dataset.value;
 				if(val == 'Hangman'){
 					hangmanReset();
+				} else if (val == 'RPS'){
+					rpsReset();
 				};
 				displayImage(val, "Game");
 			});
@@ -339,6 +341,18 @@ function rockPaperScissors(){
               		(player ? "<button id='leave'>Leave</button>" : "<button id='join'>Join</button>")+
             	"</div>"+
           	"</div>"
+}
+
+function rpsReset(){
+	database.ref("/players/player1").update({
+		player: 'Player 1',
+		choice: 'None'
+	}); 
+
+	database.ref("/players/player2").update({
+		player: 'Player 2',
+		choice: 'None'
+	});
 }
 
 $(document).on("click", "#join", function(){
